@@ -1886,7 +1886,7 @@ app.post('/api/connexion', sendImage.single('image'), async (request, response, 
                 // l'information au client avec un code
                 // 401 (Unauthorized)
 
-                response.status(401).json({error: info.message || "Connexion échouée"});
+                response.status(401).json({error: info.message || "Email ou mot de passe incorrect"});
             } else {
                  // Vérification du rôle et du statut
                 if (user.role !== "Administrateur" || user.statut !== true) {
