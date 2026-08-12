@@ -73,7 +73,7 @@ window.enregistrerHistorique = async (action, titreElement) => {
         const historiqueResult = await historique.json()
 
         if (historique.ok) {
-            console.log(historiqueResult.message)
+            return
         } else {
             console.log(historiqueResult.error)
         }

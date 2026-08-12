@@ -34,16 +34,28 @@ if (image1 && image2 && image3) {
 const detailsOffre = document.querySelector('.details-offre p')
 
 const afficherOffreDuMois = async () => {
+    try {
+        const response = await fetch('/api/offresMois');
+        const result = await response.json();
 
-    const response = await fetch('/api/offresMois', {})
-    const result = await response.json()
+        if (!response.ok) {
+            console.error(result.error || result.message);
+            detailsOffre.innerHTML = 'Une erreur est survenue';
+            return;
+        }
 
-    if (response.ok) {
-        detailsOffre.innerHTML = !result.offre.description ? 'Aucune offre pour le moment' : result.offre.description
-    } else {
-        console.log(result.error);
+        if (!result.offre || !result.offre.description) {
+            detailsOffre.innerHTML = 'Aucune offre pour le moment';
+            return;
+        }
+
+        detailsOffre.innerHTML = result.offre.description;
+
+    } catch (error) {
+        console.error("Erreur lors de la récupération de l'offre :", error);
+        detailsOffre.innerHTML = 'Impossible de récupérer l’offre';
     }
-}
+};
 
 if (detailsOffre) {
     afficherOffreDuMois()

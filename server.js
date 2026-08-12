@@ -36,24 +36,61 @@ app.set("views", "./views")
 const MemoryStore = memorystore(session);
 
 // Middlewares
-// app.use(helmet(
-//     {
-//         contentSecurityPolicy: {
-//             directives: {
-//             defaultSrc: ["'self'"],
-//             scriptSrc: ["'self'", "'unsafe-inline'", "https:",
-//                 "http:",
-//                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-//             styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-//             imgSrc: ["'self'", "data:", "https:", "http:"],
-//             connectSrc: ["'self'", "https:",
-//                 "http:",
-//                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-//             // faviconSrc: ["'self'", "data:"]
-//         }
-//         },
-//     }
-// ));
+app.use(
+    helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+
+                scriptSrc: [
+                    "'self'",
+                    "'unsafe-inline'",
+                    "'unsafe-eval'",
+                    "https:",
+                    "http:",
+                    "https://unpkg.com",
+                    "https://cdn.jsdelivr.net",
+                    "https://cdn.ckeditor.com"
+                ],
+
+                styleSrc: [
+                    "'self'",
+                    "'unsafe-inline'",
+                    "https://unpkg.com",
+                    "https://cdn.jsdelivr.net",
+                    "https://cdn.ckeditor.com"
+                ],
+
+                imgSrc: [
+                    "'self'",
+                    "data:",
+                    "https:",
+                    "http:"
+                ],
+
+                fontSrc: [
+                    "'self'",
+                    "data:",
+                    "https:"
+                ],
+
+                connectSrc: [
+                    "'self'",
+                    "https:",
+                    "http:",
+                    "https://unpkg.com",
+                    "https://cdn.jsdelivr.net",
+                    "https://cdn.ckeditor.com"
+                ],
+
+                objectSrc: ["'none'"],
+                baseUri: ["'self'"],
+                formAction: ["'self'"],
+                frameAncestors: ["'self'"]
+            }
+        }
+    })
+);
 app.use(cors({
     origin: [
         "http://localhost:3000",
@@ -97,7 +134,7 @@ const storage = multer.diskStorage({
 const sendImage = multer({ storage });
 
 // Autres middlewares
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use('/assets', express.static('assets'));
 
 // Importation des fonctions
@@ -718,7 +755,7 @@ app.get('/api/offresMois', async (request, response) => {
         const offre = await getOffreMois()
 
         if (!offre) {
-            return response.status(404).json({ error: "Aucune offre du mois disponible" })
+            return response.status(200).json({ error: "Aucune offre du mois disponible" })
         }
 
         return response.status(200).json({ message: "La récupération de l'offre a réussi", offre })
@@ -1211,52 +1248,75 @@ app.get('/api/personnels/:id', async (request, response) => {
     }
 })
 app.patch('/api/personnels/:id', sendImage.single('image'), async (request, response) => {
-
     try {
-        // Validation des données du personnel
-        const errors = validateUpdatePersonnel(request.body);
-        if (errors.length > 0) {
-            return response.status(400).json({ errors });
-        }
-
         const { id } = request.params;
-        const dataPersonnel = request.body;
+        const dataPersonnel = { ...request.body };
+        // console.log("BODY :", request.body);
 
+        // console.log("Données reçues :", dataPersonnel);
+
+        // Validation
+        const errors = validateUpdatePersonnel(dataPersonnel);
+        // console.log("ERREURS VALIDATION :", errors);
+
+        if (errors.length > 0) {
+            return response.status(400).json({
+                errors
+            });
+        }
+
+        // Vérifier l'email uniquement s'il est modifié
+        if (dataPersonnel.email) {
+            const personnelExist = await getPersonnelByEmail(dataPersonnel.email);
+
+            if (personnelExist && personnelExist.id != id) {
+                return response.status(400).json({
+                    error: 'Un personnel avec cet email existe déjà'
+                });
+            }
+        }
+
+        // Nouvelle image
         if (request.file) {
-            dataPersonnel.image = request.file.filename
-        }
-        const personnelExist = await getPersonnelByEmail(dataPersonnel.email)
-        if (personnelExist) {
-            return response.status(400).json({ error: 'Un personnel avec cet email existe déjà' });
+            dataPersonnel.image = request.file.filename;
         }
 
+        // Transformer les champs vides en null
         Object.keys(dataPersonnel).forEach((key) => {
             if (dataPersonnel[key] === '') {
                 dataPersonnel[key] = null;
             }
-        })
+        });
 
-        if (
-            !dataPersonnel === ''
-        ) {
-            return response.status(400).json({ error: 'Aucune modification faite.' });
+        // Vérifier qu'il y a réellement une modification
+        if (Object.keys(dataPersonnel).length === 0) {
+            return response.status(400).json({
+                error: 'Aucune modification faite.'
+            });
         }
-
-
-
 
         const personnel = await updatePersonnel(id, dataPersonnel);
 
         if (!personnel) {
-            return response.status(404).json({ error: 'Non trouvé' });
+            return response.status(404).json({
+                error: 'Personnel non trouvé'
+            });
         }
 
-        return response.status(200).json({ message: 'Personnel mis à jour avec succès', personnel });
+        return response.status(200).json({
+            message: 'Personnel mis à jour avec succès',
+            personnel
+        });
 
     } catch (error) {
-        return response.status(500).json({ message: 'Erreur lors de la mise à jour du personnel', error: error.message });
+        console.error("Erreur modification personnel :", error);
+
+        return response.status(500).json({
+            message: 'Erreur lors de la mise à jour du personnel',
+            error: error.message
+        });
     }
-})
+});
 app.delete('/api/personnels/:id', async (request, response) => {
     try {
         const { id } = request.params;
@@ -1828,6 +1888,12 @@ app.post('/api/connexion', sendImage.single('image'), async (request, response, 
 
                 response.status(401).json({error: info.message || "Connexion échouée"});
             } else {
+                 // Vérification du rôle et du statut
+                if (user.role !== "Administrateur" || user.statut !== true) {
+                    return response.status(403).json({
+                        error: "Accès réservé aux administrateurs actifs"
+                    });
+                }
                 // Si tout fonctionne, on ajoute
                 // l'utilisateur dans la session et on 
                 // retourne un code 200 (OK)

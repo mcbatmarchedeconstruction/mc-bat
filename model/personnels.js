@@ -66,16 +66,16 @@ export const updatePersonnel = async (id, dataPersonnel) => {
 
     const result = await pool.query(`
         UPDATE personnels SET 
-        nom_complet = COALESCE($1, nom_complet), date_de_naissance = COALESCE($2, date_de_naissance),
-        ville_de_naissance = COALESCE($3, ville_de_naissance), pays_de_naissance = COALESCE($4, pays_de_naissance), 
-        sexe = COALESCE($5, sexe), adresse = COALESCE($6, adresse), ville = COALESCE($7, ville), pays = COALESCE($8, pays), 
-        email = COALESCE($9, email), telephone = COALESCE($10, telephone), metier_id = COALESCE($11, metier_id), 
-        qualification_id = COALESCE($12, qualification_id), annee_experience = COALESCE($13, annee_experience), 
-        code_personnel = COALESCE($14, code_personnel), date_embauche = COALESCE($15, date_embauche), 
-        date_fin_contrat = COALESCE($16, date_fin_contrat), salaire = COALESCE($17, salaire), 
-        image = COALESCE($18, image), statut = COALESCE($19, statut), mot_de_passe = COALESCE($20, mot_de_passe) WHERE id = $21 RETURNING *`, 
+        role = COALESCE($1, role), nom_complet = COALESCE($2, nom_complet), date_de_naissance = COALESCE($3, date_de_naissance),
+        ville_de_naissance = COALESCE($4, ville_de_naissance), pays_de_naissance = COALESCE($5, pays_de_naissance), 
+        sexe = COALESCE($6, sexe), adresse = COALESCE($7, adresse), ville = COALESCE($8, ville), pays = COALESCE($9, pays), 
+        email = COALESCE($10, email), telephone = COALESCE($11, telephone), metier_id = COALESCE($12, metier_id), 
+        qualification_id = COALESCE($13, qualification_id), annee_experience = COALESCE($14, annee_experience), 
+        code_personnel = COALESCE($15, code_personnel), date_embauche = COALESCE($16, date_embauche), 
+        date_fin_contrat = COALESCE($17, date_fin_contrat), salaire = COALESCE($18, salaire), 
+        image = COALESCE($19, image), statut = COALESCE($20, statut), mot_de_passe = COALESCE($21, mot_de_passe) WHERE id = $22 RETURNING *`, 
         
-        [dataPersonnel.nom_complet, dataPersonnel.date_de_naissance, dataPersonnel.ville_de_naissance, dataPersonnel.pays_de_naissance, dataPersonnel.sexe, dataPersonnel.adresse, dataPersonnel.ville,
+        [dataPersonnel.role, dataPersonnel.nom_complet, dataPersonnel.date_de_naissance, dataPersonnel.ville_de_naissance, dataPersonnel.pays_de_naissance, dataPersonnel.sexe, dataPersonnel.adresse, dataPersonnel.ville,
         dataPersonnel.pays, dataPersonnel.email, dataPersonnel.telephone, dataPersonnel.metier_id, dataPersonnel.qualification_id, dataPersonnel.annee_experience, dataPersonnel.code_personnel, dataPersonnel.date_embauche, dataPersonnel.date_fin_contrat, dataPersonnel.salaire,
         dataPersonnel.image, dataPersonnel.statut, mot_de_passe, id]);
 
