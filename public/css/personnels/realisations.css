@@ -1,0 +1,244 @@
+:root {
+    --couleur-yellow: rgb(255, 200, 0);
+    --couleur-yellowHover: rgb(179, 179, 0);
+    --couleur-redHeader: rgb(209, 10, 10);
+    --couleur-redBtn: rgb(209.10, 0, 0);
+    --couleur-redBtnHover: rgb(160, 0, 0);
+    --couleur-boxShadow: 0px 0px 5px 1px rgb(222, 222, 222);
+    --couleur-withRed: white;
+    --couleur-withWhite: black;
+    --couleur-orangeNouveauNotif: rgba(255, 200, 0, 0.205);
+    --couleur-greenNotifLu: rgba(0, 128, 0, 0.228);
+}
+
+.container {
+    padding: 1rem;
+    padding-top: 2rem;
+}
+
+.title-option-ajouter {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.btn-add button {
+    display: flex;
+    align-items: center;
+    gap: 0rem;
+    font-size: 0.9rem;
+    padding: 0.7rem;
+    border: none;
+    background-color: var(--couleur-yellow);
+    color: var(--couleur-withWhite);
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.form-add-edite {
+    display: none;
+    flex-direction: column;
+    margin-top: 2rem;
+    padding: 1rem;
+    box-shadow: var(--couleur-boxShadow);
+    border-radius: 5px;
+}
+
+.titre-form {
+    display: flex;
+}
+
+.form {
+    padding-top: 1rem;
+}
+
+.form,
+.titre,
+.secteur,
+.contenu,
+.image {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+input,
+select,
+button,
+textarea {
+    padding: 0.9rem;
+}
+
+input,
+select,
+button,
+textarea {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    box-shadow: var(--couleur-boxShadow);
+    border-radius: 5px;
+}
+
+input[type="file"] {
+    padding: 0;
+    box-shadow: none;
+}
+
+.form i {
+    color: red;
+}
+
+.form label {
+    font-weight: bold;
+}
+
+.btn-add-edtite {
+    padding-top: 1rem;
+}
+
+.btn-add-edtite button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    float: right;
+    font-size: 0.9rem;
+    background-color: var(--couleur-yellow);
+    color: var(--couleur-withWhite);
+    font-weight: bold;
+}
+
+.tableau {
+    margin-top: 3rem;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    border-bottom: 1px solid rgb(222, 222, 222);
+    color: var(--couleur-withWhite);
+}
+
+th {
+    padding: 1rem;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid rgb(222, 222, 222);
+    font-family: 'Roboto', sans-serif;
+    color: var(--couleur-withWhite);
+}
+.limit-description  p{
+    height: 5rem;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+.btn-action {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.btn-action ion-icon {
+    box-shadow: var(--couleur-boxShadow);
+    padding: 0.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+}
+
+.btn-action ion-icon:hover {
+    background-color: rgb(222, 222, 222);
+
+}
+
+.notif {
+    background-color: var(--couleur-greenNotifLu);
+    padding: 0.3rem;
+    border-radius: 5px;
+    box-shadow: var(--couleur-boxShadow);
+    color: green;
+    font-weight: bold;
+    text-align: center;
+}
+.unnotif {
+    background-color: var(--couleur-orangeNouveauNotif);
+    padding: 0.3rem;
+    border-radius: 5px;
+    box-shadow: var(--couleur-boxShadow);
+    color: orange;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    section {
+        padding: 1rem;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        box-shadow: var(--couleur-boxShadow);
+    }
+
+    .form-add-edite {
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 3rem;
+    }
+    .title-option-ajouter {
+        flex-wrap: unset;
+        justify-content: space-between;
+    }
+
+
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    section {
+        padding: 0.5rem;
+    }
+
+    .container {
+        min-height: 100vh;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px 1px rgb(222, 222, 222);
+    }
+
+    .form {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .titre,
+    .secteur,
+    .contenu,
+    .image {
+        flex-grow: 1;
+    }
+
+    .title-option-ajouter {
+        flex-wrap: unset;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,434 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    --couleur-yellow: rgb(255, 200, 0);
+    --couleur-yellowHover: rgb(179, 179, 0);
+    --couleur-redHeader: rgb(209, 10, 10);
+    --couleur-redBtn: rgb(209.10, 0, 0);
+    --couleur-redBtnHover: rgb(160, 0, 0);
+    --couleur-boxShadow: 0px 0px 5px 1px rgb(222, 222, 222);
+    --couleur-whiteShadow: rgb(222, 222, 222);
+    --couleur-withRed: white;
+    --couleur-withWhite: black;
+    --couleur-orangeNouveauNotif: rgba(255, 200, 0, 0.205);
+    --couleur-greenNotifLu: rgba(0, 128, 0, 0.228);
+}
+
+body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 100vh;
+}
+ main {
+        width: 100%;
+        min-height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+/* Titres */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Texte général */
+body,
+p,
+li,
+span {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* Liens et boutons */
+a,
+button {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor: pointer;
+    font-style: normal;
+    list-style: none;
+    text-decoration: none;
+}
+
+input,
+textarea,
+select,
+button {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    font-size: 1rem;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+
+}
+
+img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+
+}
+
+/* Header */
+header {
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--couleur-redHeader);
+    color: var(--couleur-withRed);
+    
+}
+
+.open_menu ion-icon {
+    font-size: 3rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.open_menu ion-icon:hover {
+    color: rgba(255, 255, 255, 0.471);
+}
+
+.menu-conatiner {
+    position: fixed;
+    left: 10%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 1rem;
+    z-index: 100;
+    background-color: var(--couleur-withRed);
+    box-shadow: var(--couleur-boxShadow);
+    overflow-y: auto;
+    transform: translateX(200%);
+    transition: 0.3s cubic-bezier(0, 3, 0, 1);
+    
+}
+.menu-conatiner.active {
+    transform: translateX(0);
+}
+
+
+.menu-conatiner,
+.menu-conatiner a {
+    color: var(--couleur-withWhite);
+
+}
+
+.profil-connecter {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.info-connecter-img {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.menu-conatiner img {
+    border-radius: 100%;
+}
+
+.close-menu ion-icon {
+    font-size: 3rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.close-menu ion-icon:hover {
+    color: rgba(0, 0, 0, 0.219);
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 1rem;
+    list-style: none;
+    font-style: normal;
+    
+
+}
+
+.menu li {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    font-style: unset;
+}
+
+.menu a ion-icon {
+    font-size: 1.5rem;
+}
+
+.menu a:hover,
+.menu a.active {
+    color: var(--couleur-withWhite);
+    background-color: rgba(255, 200, 0, 0.23);
+    border-radius: 5px;
+}
+.filtre {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+.filtre button{
+    padding: 0.5rem;
+    background-color: transparent;
+    border: 1px solid var(--couleur-whiteShadow);
+    box-shadow: none;
+    color: var(--couleur-withWhite);
+    transition: 0.3s ease-in-out;
+}
+.filtre button:hover{
+    background-color:  var(--couleur-yellow);
+}
+.btn.active {
+    background-color: var(--couleur-yellow) !important;
+}
+.btn-deconnexion button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--couleur-yellow);
+    color: var(--couleur-withWhite);
+    transition: 0.3s ease-in-out;
+}
+.btn-deconnexion button:hover {
+    background-color: var(--couleur-yellowHover);
+}
+
+.btn-deconnexion button ion-icon {
+    font-size: 1.2rem;
+}
+
+.notif {
+    background-color: var(--couleur-greenNotifLu);
+    padding: 0.3rem;
+    border-radius: 5px;
+    box-shadow: var(--couleur-boxShadow);
+    color: green;
+    font-weight: bold;
+    text-align: center;
+}
+
+.unnotif {
+    background-color: var(--couleur-orangeNouveauNotif);
+    padding: 0.3rem;
+    border-radius: 5px;
+    box-shadow: var(--couleur-boxShadow);
+    color: orange;
+    font-weight: bold;
+    text-align: center;
+}
+
+.waiting {
+    white-space: nowrap;
+    background-color: rgba(0, 0, 255, 0.18);
+    padding: 0.3rem;
+    border-radius: 5px;
+    box-shadow: var(--couleur-boxShadow);
+    color: blue;
+    font-weight: bold;
+    text-align: center;
+}
+.lu {
+    background-color: rgba(0, 0, 255, 0.18);
+    color: blue;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
+    margin-top: auto;
+    padding: 1rem;
+}
+
+
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    
+    .personnel-container-header-main {
+        display: flex;
+    }
+    main {
+        width: calc(100% - 20rem);
+        margin-left: 20rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 20rem;
+        height: 100vh;
+        overflow-x: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-left: 0.5rem;
+        bottom: 0;
+        background-color: var(--couleur-redHeader);
+    }
+
+    .logo {
+        width: 200px;
+        height: 200px;
+    }
+
+    .menu-conatiner {
+        display: unset;
+        position: relative;
+        left: 0;
+        bottom: 0;
+        box-shadow: none;
+        background-color: transparent;
+        color: var(--couleur-withRed);
+        transform: translateX(0%);
+    }
+
+    .open_menu,
+    .close-menu {
+        display: none;
+    }
+
+    .menu {
+        gap: 3rem;
+    }
+
+    .menu a {
+        /* padding: 0; */
+        color: var(--couleur-withRed);
+        transition: 0.3s ease-in-out;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+        color: var(--couleur-yellow);
+        background-color: rgba(255, 255, 0, 0.085);
+    }
+
+    .btn-deconnexion button {
+        margin-left: 0;
+        background-color: var(--couleur-yellow);
+        color: black;
+        box-shadow: none;
+        font-weight: bold;
+        
+    }
+    .btn-deconnexion button:hover {
+        background-color: var(--couleur-yellowHover);
+    }
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    .personnel-container-header-main {
+        display: flex;
+    }
+    main {
+        width: calc(100% - 20rem);
+        margin-left: 20rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 20rem;
+        height: 100vh;
+        overflow-x: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-right: 5rem;
+    }
+
+    .logo {
+        width: 200px;
+        height: 200px;
+    }
+
+    .menu-conatiner {
+        display: unset;
+        position: relative;
+        left: 0;
+        bottom: 0;
+        box-shadow: none;
+        background-color: transparent;
+        color: var(--couleur-withRed);
+        transform: translateX(0%);
+    }
+
+    .open_menu,
+    .close-menu {
+        display: none;
+    }
+
+    .menu {
+        gap: 3rem;
+    }
+
+    .menu a {
+        padding: 0;
+        color: var(--couleur-withRed);
+        transition: 0.3s ease-in-out;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+        color: var(--couleur-yellow);
+    }
+
+    .btn-deconnexion button {
+        margin-left: 0;
+        background-color: var(--couleur-yellow);
+        color: black;
+        box-shadow: none;
+        font-weight: bold;
+    }
+    .btn-deconnexion button:hover {
+        background-color: var(--couleur-yellowHover);
+    }
+}

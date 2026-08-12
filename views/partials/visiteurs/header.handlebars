@@ -1,0 +1,64 @@
+<header>
+    <img class="logo" src="/assets/mc-bat.jpeg" alt="Logo de l'entreprise">
+    <div class="menu-conatiner">
+        
+        <ul class="menu">
+            <li>
+                <a href="/" class="{{#if (eq currentPage '/')}}active{{/if}}">
+                    <ion-icon name="home-outline"></ion-icon>
+                    <span>ACCUEIL</span>
+                </a>
+            </li>
+            <li>
+                <a href="/visiteurs/actualites/liste" class="{{#if (or (eq currentPage 'actualites-liste') (eq currentPage 'actualite-lectures'))}}active{{/if}}">
+                    <ion-icon name="newspaper-outline"></ion-icon>
+                    <span>ACTUALITÉS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/visiteurs/devis/demandes" class="{{#if (eq currentPage 'devis-demande')}}active{{/if}}">
+                    <ion-icon name="sync-outline"></ion-icon>
+                    <span>DEVIS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/visiteurs/realisations/liste" class="{{#if  ( or (eq currentPage 'realisations') (eq currentPage 'lecture-realisations') )}}active{{/if}}">
+                    <ion-icon name="construct-outline"></ion-icon>
+                    <span>NOS RÉALISATIONS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/visiteurs/services/lectures" class="{{#if (eq currentPage 'services')}}active{{/if}}">
+                    <ion-icon name="build-outline"></ion-icon>
+                    <span>NOS SERVICES</span>
+                </a>
+            </li>
+            <li>
+                
+                <a href="/#apropos" class="unsetHover">
+                    <ion-icon name="people-circle-outline"></ion-icon>
+                    <span>À PROPOS</span>
+                </a>
+            </li>
+            <li>
+                
+                <a href="/#contact" class="unsetHover">
+                    <ion-icon name="call-outline"></ion-icon>
+                    <span>CONTACT</span>
+                </a>
+            </li>
+            <li>
+                <a href="/visiteurs/devis/demandes" class="demander-devis">
+                    <span>DEMANDER UN DEVIS</span>
+                </a>
+            </li>
+        </ul>
+        <div class="close-menu">
+            <ion-icon name="close-outline"></ion-icon>
+        </div>
+    </div>
+
+    <div class="open_menu">
+        <ion-icon name="reorder-two-outline"></ion-icon>
+    </div>
+</header>

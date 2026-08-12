@@ -1,0 +1,80 @@
+<section>
+    <div class="container">
+        <div class="title-option-ajouter">
+            <h1>{{ title }}</h1>
+            <div class="btn-add">
+                <button type="button" id="btn-add">
+                    <ion-icon name="add-outline"></ion-icon>
+                    <span>Ajouter un prix</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="form" class="form-add-edite">
+            <div class="titre">
+                <h2 class="ajouter">Ajouter</h2>
+                <h2 class="modifier">Modifier</h2>
+                <p class="message1"></p>
+            </div>
+            <form class="form">
+                <div class="titre">
+                    <label for="titre">Produit <i>*</i></label>
+                    <input type="text" placeholder="Nom du produit" name="produit">
+                </div>
+                <div class="contenu">
+                    <label for="description">Description <i>*</i></label>
+                    <textarea name="details_produit" rows="5" placeholder="Description du marché (points clés)"></textarea>
+                </div>
+                 <div class="prix">
+                    <label for="prix">Prix <i>*</i></label>
+                    <input type="number" placeholder="Prix (ex : 400)" name="prix">
+                </div>
+                
+                <div class="image">
+                    <label for="statut">Statut <i>*</i></label>
+                   <input type="file" name="image">
+                </div>
+
+                <div class="image">
+                    <label for="image">Image <i>*</i></label>
+                   <select type="file" name="statut">
+                    <option value="true">Actif</option>
+                    <option value="false">Suspendu</option>
+                   </select>
+                </div>
+
+                <div class="btn-add-edtite">
+                    <button type="submit" id="btn-edite">
+                        <ion-icon name="send-outline"></ion-icon>
+                        <span>Valider</span>
+                    </button>
+                     <button type="submit" id="btn-add">
+                        <ion-icon name="send-outline"></ion-icon>
+                        <span>Créer</span>
+                    </button>
+               </div>
+            </form>
+        </div>
+
+        <div class="tableau">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>PRODUIT</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Statut</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <p class="message2">
+                        
+                    </p>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

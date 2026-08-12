@@ -1,0 +1,267 @@
+<section>
+  <div class="container">
+    <div class="title-option-ajouter">
+      <h1>{{title}}</h1>
+      <div class="btn-add">
+        <button type="button" id="btn-add">
+          <ion-icon name="add-outline"></ion-icon>
+          <span>Ajouter un personnel</span>
+        </button>
+      </div>
+    </div>
+    <div class="filtre">
+      <input type="text" class="recherche" placeholder="nom complet et email">
+        <button class="btn active">TOUT</button>
+
+        <button class="btn">Administrateur</button>
+        <button class="btn">Personnel</button>
+        <button class="btn">Actif</button>
+        <button class="btn">Suspendu</button>
+    </div>
+
+    <div class="profil">
+      <img src="" alt="Photo de profil" />
+
+      <div class="info">
+        <p><strong>Rôle : </strong> <span> </span></p>
+        <p><strong>Nom complet :</strong> <span> </span></p>
+        <p><strong>Date de naissance :</strong> <span> </span></p>
+        <p><strong>Ville de naissance :</strong> <span> </span></p>
+        <p><strong>Pays de naissance :</strong> <span> </span></p>
+        <p><strong>Sexe :</strong> <span> </span></p>
+        <p><strong>Adresse: </strong> <span> </span></p>
+        <p><strong>Ville de résidence :</strong> <span> </span></p>
+        <p><strong>Pays de résidence :</strong> <span> </span></p>
+        <p><strong>Email :</strong> <span> </span></p>
+        <p><strong>Téléphone : </strong> <span> </span></p>
+        <p><strong>Métier :</strong> <span> </span></p>
+        <p><strong>Qualification :</strong> <span> </span></p>
+        <p><strong>Année d'expérience :</strong> <span> </span></p>
+        <p><strong>Code du personnel : </strong> <span> </span></p>
+        <p><strong>Date d'embauche :</strong> <span> </span></p>
+        <p><strong>Date de fin de contrat :</strong> <span> </span></p>
+        <p><strong>Salaire :</strong> <span> </span></p>
+        <p><strong>Statut :</strong> <span> </span></p>
+      </div>
+    </div>
+
+    <div id="form" class="form-add-edite">
+      <div class="titre">
+        <h2 class="ajouter">Ajouter</h2>
+        <h2 class="modifier">Modifier</h2>
+        <p class="message1"></p>
+      </div>
+      <form class="form">
+
+        <div class="step active">
+          <div class="role">
+            <h3>Informations personnelles</h3>
+            <label for="role">Rôle <i>*</i></label>
+            <select id="role" name="role">
+              <option value="Administrateur">Administrateur</option>
+              <option value="Personnel">Personnel</option>
+            </select>
+          </div>
+          <div class="nom">
+            <label for="nom">Nom complet <i>*</i></label>
+            <input
+              type="text"
+              placeholder="ex : Jean Philippe"
+              name="nom_complet"
+            />
+          </div>
+          <div class="dates">
+            <label for="date">Date de naissance <i>*</i></label>
+            <input type="date" name="date_de_naissance" />
+          </div>
+          <div class="ville">
+            <label for="ville">Ville de naissance <i>*</i></label>
+            <input
+              type="text"
+              placeholder="ex : Paris"
+              name="ville_de_naissance"
+            />
+          </div>
+          <div class="pays">
+            <label for="pays">Pays de naissance <i>*</i></label>
+            <select id="pays" name="pays_de_naissance">
+              <option value="">-- Sélectionnez un pays --</option>
+            </select>
+          </div>
+          <div class="sexe">
+            <label for="sexe">Sexe <i>*</i></label>
+            <select id="sexe" name="sexe">
+              <option value="Homme">Homme</option>
+              <option value="Femme">Femme</option>
+            </select>
+          </div>
+          <div class="btn-add-edtite">
+            <button type="submit" id="btn-next">
+              <span>Suivant</span>
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="step">
+          <div class="adresse">
+            <h3>Coordonnées</h3>
+            <label for="adresse">Adresse <i>*</i></label>
+            <input
+              type="text"
+              placeholder="ex. : 23, rue Gréber"
+              name="adresse"
+            />
+          </div>
+          <div class="ville">
+            <label for="ville">Ville de résidence <i>*</i></label>
+            <input type="text" placeholder="ex : Paris" name="ville" />
+          </div>
+          <div class="pays">
+            <label for="pays">Pays de résidence <i>*</i></label>
+            <select id="pays-resi" name="pays">
+              <option value="">-- Sélectionnez un pays --</option>
+            </select>
+          </div>
+          <div class="email">
+            <label for="email">Email <i>*</i></label>
+            <input
+              type="email"
+              placeholder="ex : exemple@domaine.com"
+              name="email"
+            />
+          </div>
+          <div class="password">
+            <label for="password">Mot de passe <i>(Facultatif) </i></label>
+            <input
+              type="password"
+              name="mot_de_passe"
+              placeholder="Laisser vide pour conserver le mot de passe actuel"
+            />
+          </div>
+          <div class="telephone">
+            <label for="telephone">Téléphone <i>*</i></label>
+            <input
+              type="text"
+              placeholder="ex : +243-814-556-784"
+              name="telephone"
+            />
+          </div>
+          <div class="btn-add-edtite">
+            <button type="submit" id="btn-next">
+              <span>Suivant</span>
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
+            <button type="submit" id="btn-prev">
+              <ion-icon name="chevron-back-outline"></ion-icon>
+              <span>Précédent</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="step">
+
+          <div class="metier">
+            <h3>Informations professionnelles</h3>
+            <label for="metier">Métier <i>*</i></label>
+            <select id="metier" name="metier_id">
+
+            </select>
+          </div>
+          <div class="qualification">
+            <label for="qualification">Qualification <i>*</i></label>
+            <select id="qualification" name="qualification_id">
+
+            </select>
+          </div>
+          <div class="experience">
+            <label for="experience">Année d'expérience <i>*</i></label>
+            <input
+              type="number"
+              name="annee_experience"
+              placeholder="Nombre d'années d'expérience (ex : 5)"
+            />
+          </div>
+          <div class="code-personnel">
+            <label for="code-personnel">Code du personnel <i>*</i></label>
+            <span>
+              (3 premières lettres du métier + 3 derniers chiffres du téléphone.
+              Ex : MAC-784)
+            </span>
+            <input
+              type="text"
+              placeholder="ex. : MAC-784"
+              name="code_personnel"
+            />
+          </div>
+          <div class="dates">
+            <label for="date">Date d'embauche <i>*</i></label>
+            <input type="date" name="date_embauche" />
+          </div>
+          <div class="dates">
+            <label for="date">Date de fin de contrat
+              <i>(Facultatif) </i></label>
+            <input type="date" name="date_fin_contrat" />
+          </div>
+          <div class="salaire">
+            <label for="salaire">Salaire <i>*</i></label>
+            <input
+              type="number"
+              name="salaire"
+              placeholder="Entrez le salaire (ex : 1200)"
+            />
+          </div>
+          <div class="image">
+            <label for="image">Image <i>*</i></label>
+            <input type="file" name="image" />
+          </div>
+          <div class="qualification">
+            <label for="statut">Statut <i>*</i></label>
+            <select id="statut" name="statut">
+              <option value="true">Actif</option>
+              <option value="false">Suspendu</option>
+            </select>
+          </div>
+
+          <div class="btn-add-edtite">
+
+            <div class="btn-valide">
+              <button type="submit" id="btn-edite">
+                <ion-icon name="send-outline"></ion-icon>
+                <span>Valider</span>
+              </button>
+              <button type="submit" id="btn-add">
+                <ion-icon name="send-outline"></ion-icon>
+                <span>Créer</span>
+              </button>
+            </div>
+            <button type="submit" id="btn-prev">
+              <ion-icon name="chevron-back-outline"></ion-icon>
+              <span>Précédent</span>
+            </button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="tableau">
+      <table>
+        <thead>
+          <tr>
+            <th>Nom complet</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Statut</th>
+            <th>Date d'embauche</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <p class="message2"></p>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

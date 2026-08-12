@@ -1,0 +1,102 @@
+<section >
+    <div class="container">
+        <div class="title-option-ajouter">
+            <h1>{{ title }}</h1>
+            <div class="btn-add">
+                <button type="button" id="btn-add">
+                    <ion-icon name="add-outline"></ion-icon>
+                    <span>Ajouter une actualité</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="filtre">
+        <button class="btn active">TOUT</button>
+
+        <button class="btn">Résidentiel</button>
+        <button class="btn">Commercial</button>
+        <button class="btn">Industriel</button>
+        <button class="btn">Institutionnel</button>
+
+        <button class="btn">Génie civil</button>
+        <button class="btn">Travaux publics</button>
+        <button class="btn">Rénovation</button>
+        <button class="btn">Aménagement extérieur</button>
+    </div>
+
+        <div id="form" class="form-add-edite">
+            <div class="titre-form titre">
+                <h2 class="ajouter">Ajouter</h2>
+                <h2 class="modifier">Modifier</h2>
+                <p class="message1"></p>
+            </div>
+            <form class="form">
+                <div class="titre">
+                    <label for="titre">Titre <i>*</i></label>
+                    <input type="text" placeholder="Titre de l'actualité" name="titre">
+                </div>
+                <div class="secteur">
+                    <label for="secteur">Secteur <i>*</i></label>
+                    <select name="secteur">
+                        <option value="Résidentiel">Résidentiel</option>
+                        <option value="Commercial">Commercial</option>
+                        <option value="Industriel">Industriel</option>
+                        <option value="Institutionnel">Institutionnel</option>
+
+                        <option value="Génie civil">Génie civil</option>
+                        <option value="Travaux publics">Travaux publics</option>
+                        <option value="Rénovation">Rénovation</option>
+                        <option value="Aménagement extérieur">Aménagement extérieur</option>
+                    </select>
+                </div>
+                <div class="contenu">
+                    <label for="contenu">Contenu <i>*</i></label>
+                       <textarea name="contenu" rows="5" placeholder="Décrivez l'actualité (max 500 caractères)"></textarea>
+                </div>
+                <div class="image">
+                    <label for="image">Image <i>*</i></label>
+                    <input type="file" name="image" >
+                </div>
+                <div class="image">
+                    <label for="image">Statut <i>*</i></label>
+                    <select name="statut" >
+                        <option value="true">Actif</option>
+                        <option value="false">Suspendu</option>
+                    </select>
+                </div>
+
+                <div class="btn-add-edtite">
+                    <button type="submit" id="btn-edite">
+                        <ion-icon name="send-outline"></ion-icon>
+                        <span>Valider</span>
+                    </button>
+                     <button type="submit" id="btn-add">
+                        <ion-icon name="send-outline"></ion-icon>
+                        <span>Créer</span>
+                    </button>
+               </div>
+            </form>
+        </div>
+
+        <div class="tableau">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Secteur</th>
+                        <th>Titre</th>
+                        <th>Contenu</th>
+                        <th>Statut</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <p class="message2">
+                    </p>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

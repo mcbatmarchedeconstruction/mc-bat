@@ -1,0 +1,61 @@
+:root {
+    --couleur-yellow: rgb(255, 200, 0);
+    --couleur-yellowHover : rgb(179, 179, 0);
+    --couleur-redHeader : rgb(209, 10, 10);
+    --couleur-redBtn: rgb(209.10, 0, 0);
+    --couleur-redBtnHover: rgb(160, 0, 0);
+    --couleur-boxShadow : 0px 0px 5px 1px rgb(222, 222, 222);
+    --couleur-withRed : white;
+    --couleur-withWhite : black;
+    --couleur-orangeNouveauNotif: rgba(255, 200, 0, 0.205);
+    --couleur-greenNotifLu: rgba(0, 128, 0, 0.228);
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.tableau {
+    margin-top: 3rem;
+    overflow-y: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+thead {
+    border-bottom: 1px solid rgb(222, 222, 222);
+    color: var(--couleur-withWhite);
+}
+
+th {
+    padding: 1rem;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid rgb(222, 222, 222);
+    font-family: 'Roboto', sans-serif;
+    color: var(--couleur-withWhite);
+}
+
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    section {
+        padding-left: 5rem;
+    }
+    .tableau {
+        width: 60%;
+    }
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {}

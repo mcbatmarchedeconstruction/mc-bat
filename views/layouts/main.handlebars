@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/global.js" defer></script>
+    <link rel="stylesheet" href="/css/global.css">
+    {{#each styles}}
+        <link rel="stylesheet" href="/css/{{ this }}">
+    {{/each}}
+    {{#each scripts }}
+        <script type="module" src="/js/{{ this }}" defer></script>
+    {{/each}}
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+    <title>{{ title }}</title>
+</head>
+<body>
+    {{> visiteurs/header}}
+    {{> visiteurs/popup}}
+    {{#unless (eq currentPage '/')}}  
+        {{> visiteurs/background}}
+    {{/unless}}
+    <main>
+        {{{ body }}}
+    </main>
+    {{> visiteurs/footer}}
+</body>
+</html>

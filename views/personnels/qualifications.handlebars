@@ -1,0 +1,53 @@
+<section>
+    <div class="container">
+        <div class="title-option-ajouter">
+            <h1>{{ title }}</h1>
+            <div class="btn-add">
+                <button type="button" id="btn-add">
+                    <ion-icon name="add-outline"></ion-icon>
+                    <span>Ajouter une qualification</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="form" class="form-add-edite">
+            <div class="titre">
+                <h2 class="ajouter">Ajouter</h2>
+                <h2 class="modifier">Modifier</h2>
+                <p class="message1"></p>
+            </div>
+            <form class="form">
+                <div class="titre">
+                    <label for="titre">Niveau de qualification <i>*</i></label>
+                    <input type="text" placeholder="ex : Chef d'équipe" name="niveau_qualification">
+                </div>
+
+               <div class="btn-add-edtite">
+                    <button type="submit" id="btn-edite">
+                        <ion-icon name="send-outline"></ion-icon>
+                        <span>Valider</span>
+                    </button>
+                     <button type="submit" id="btn-add">
+                        <ion-icon name="send-outline"></ion-icon>
+                        <span>Créer</span>
+                    </button>
+               </div>
+            </form>
+        </div>
+
+        <div class="tableau">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Qualification</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <p class="message2"></p>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

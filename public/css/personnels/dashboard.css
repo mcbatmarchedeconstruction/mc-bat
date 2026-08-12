@@ -1,0 +1,137 @@
+:root {
+    --couleur-yellow: rgb(255, 200, 0);
+    --couleur-yellowHover : rgb(179, 179, 0);
+    --couleur-redHeader : rgb(209, 10, 10);
+    --couleur-redBtn: rgb(209.10, 0, 0);
+    --couleur-redBtnHover: rgb(160, 0, 0);
+    --couleur-boxShadow : 0px 0px 5px 1px rgb(222, 222, 222);
+    --couleur-withRed : white;
+    --couleur-withWhite : black;
+    --couleur-orangeNouveauNotif: rgba(255, 200, 0, 0.205);
+    --couleur-greenNotifLu: rgba(0, 128, 0, 0.228);
+
+}
+.container-dashboard {
+    padding: 1rem;
+    padding-top: 2rem;
+}
+.stats-conatainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+.bloc-stats {
+    height: 10rem;
+    padding: 1rem;
+    box-shadow: var(--couleur-boxShadow);
+    flex-grow: 1;
+    border-radius: 5px;
+}
+.bloc-stats strong {
+    font-size: 3rem;
+}
+.bloc-stats p:last-child {
+    font-size: 1.2rem;
+}
+.container-dashboard h2{
+    padding-top: 3rem;
+}
+.recent-devis {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    box-shadow: var(--couleur-boxShadow);
+    border-radius: 5px;
+    width: 100%;
+    overflow-y: auto;
+}
+.recent-devis a {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: fit-content;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    box-shadow: var(--couleur-boxShadow);
+    color: var(--couleur-withWhite);
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+thead {
+    border-bottom: 1px solid rgb(222, 222, 222);
+    color: var(--couleur-withWhite);
+}
+
+th {
+    padding: 1rem;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid rgb(222, 222, 222);
+    font-family: 'Roboto', sans-serif;
+    color: var(--couleur-withWhite);
+}
+.notif {
+    background-color: var(--couleur-greenNotifLu);
+    padding: 0.3rem;
+    border-radius: 5px;
+    box-shadow: var(--couleur-boxShadow);
+    color: green;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    .container-dashboard {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+        width: 100%;
+    }
+    .stats-conatainer {
+        flex-direction: unset;
+        display: flex;
+        justify-content: space-between;
+    }
+    .bloc-stats {
+        width: auto;
+        height: auto;
+        flex-grow: 1;
+    }
+}
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    .container-dashboard {
+        width: 100%;
+    }
+    .stats-conatainer {
+        flex-direction: unset;
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+    }
+    .bloc-stats {
+        width: auto;
+        height: auto;
+        flex-grow: 1;
+    }
+   
+}

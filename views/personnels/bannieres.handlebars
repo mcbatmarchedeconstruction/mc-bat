@@ -1,0 +1,59 @@
+<section>
+    <div class="container">
+        <div class="title-option-ajouter">
+            <h1>{{ title }}</h1>
+            <div class="btn-add">
+                <button type="button" id="btn-add">
+                    <ion-icon name="add-outline"></ion-icon>
+                    <span>Ajouter une bannière</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="form-add-edite">
+            <div class="titre">
+                <h2 class="ajouter">Ajouter <span></span></h2>
+                <h2 class="modifier">Modifier</h2>
+                <p class="message"></p>
+            </div>
+            <form class="form">
+                <div class="contenu">
+                    <label for="citation">Citation <i>*</i></label>
+                    <textarea name="citation" rows="5" placeholder="Texte de la bannière (ex. : slogan), 208 caractères maximum" maxlength="208"></textarea>
+                </div>
+                <div class="image">
+                    <label for="image">Image <i>*</i></label>
+                    <input type="file" >
+                    
+                </div>
+
+                <div class="btn-add-edtite">
+                    <button type="submit" id="btn-edite" >
+                        <ion-icon name="send-outline"></ion-icon>
+                        <span>Valider</span>
+                    </button>
+                     <button type="submit" id="btn-add">
+                        <ion-icon name="send-outline"></ion-icon>
+                        <span>Créer</span>
+                    </button>
+               </div>
+            </form>
+        </div>
+
+        <div class="tableau">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Citation</th>
+                        <th>Statut</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

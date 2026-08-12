@@ -1,0 +1,51 @@
+<section>
+    <div class="container-dashboard">
+        <h1>{{ title }}</h1>
+
+        <div class="stats-conatainer">
+            <div class="bloc-stats">
+                <p><strong>{{ personnelCount }}</strong></p>
+                <p>Personnels</p>
+            </div>
+            <div class="bloc-stats">
+                <p><strong>{{ serviceCount }}</strong></p>
+                <p>Services</p>
+            </div>
+            <div class="bloc-stats">
+                <p><strong>{{ actualiteCount }}</strong></p>
+                <p>Actualités</p>
+            </div>
+            <div class="bloc-stats">
+                <p><strong>{{ devisCount }}</strong></p>
+                <p>Demandes de devis</p>
+            </div>
+            <div class="bloc-stats">
+                <p><strong>{{ utilisateurCount }}</strong></p>
+                <p>Utilisateurs</p>
+            </div>
+        </div>
+        <h2>Devis récemment soumis</h2>
+        <div class="recent-devis">
+            <table >
+                <thead>
+                    <tr>
+                        <th>Nom complet</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Secteur</th>
+                        <th>Budget</th>
+                        <th>Statut</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    
+                </tbody>
+            </table>
+            <a href="/personnels/devis">
+            Voir toutes les demandes
+        </a>
+        </div>
+        
+    </div>
+</section>

@@ -1,0 +1,110 @@
+<header>
+    <img class="logo" src="/assets/mc-bat.jpeg" alt="Logo de l'entreprise">
+    <div class="menu-conatiner">
+        <div class="profil-connecter">
+            <div class="info-connecter-img">
+                <img src="/assets/{{userConnecter.image}}" alt="Photo de profil">
+                <div class="info-connecter">
+                    <p><strong>{{ userConnecter.nom_complet }}</strong></p>
+                    <p>{{ userConnecter.role }}</p>
+                </div>
+            </div>
+            <div class="close-menu">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+        </div>
+        <ul class="menu">
+            <li>
+                <a href="/personnels/dashboard" class="{{#if (eq currentPage 'dashboard')}}active{{/if}}">
+                    <ion-icon name="home-outline"></ion-icon>
+                    <span>TABLEAU DE BORD</span>
+                </a>
+            </li>
+            <li>
+                <a href="/personnels/actualites" class="{{#if (eq currentPage 'actualites')}}active{{/if}}">
+                    <ion-icon name="newspaper-outline"></ion-icon>
+                    <span>ACTUALITÉS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/personnels/realisations" class="{{#if (eq currentPage 'realisations')}}active{{/if}}">
+                    <ion-icon name="construct-outline"></ion-icon>
+                    <span>RÉALISATIONS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/personnels/services" class="{{#if (eq currentPage 'services')}}active{{/if}}">
+                    <ion-icon name="build-outline"></ion-icon>
+                    <span>SERVICES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/personnels/devis" class="{{#if (eq currentPage 'devis')}}active{{/if}}">
+                    <ion-icon name="sync-outline"></ion-icon>
+                    <span>DEVIS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/personnels/marches" class="{{#if (eq currentPage 'marches')}}active{{/if}}">
+                    <ion-icon name="magnet-outline"></ion-icon>
+                    <span>MARCHÉS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/personnels/metiers" class="{{#if (eq currentPage 'metiers')}}active{{/if}}">
+                    <ion-icon name="hammer-outline"></ion-icon>
+                    <span>MÉTIERS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/personnels/qualifications" class="{{#if (eq currentPage 'qualifications')}}active{{/if}}">
+                    <ion-icon name="analytics-outline"></ion-icon>
+                    <span>NIVEAU</span>
+                </a>
+            </li>
+            <li>
+                <a href="/personnels/offres" class="{{#if (eq currentPage 'offres')}}active{{/if}}">
+                    <ion-icon name="megaphone-outline"></ion-icon>
+                    <span>OFFRES</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/personnels/personnels" class="{{#if (eq currentPage 'personnels')}}active{{/if}}">
+                    <ion-icon name="people-outline"></ion-icon>
+                    <span>PERSONNELS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/personnels/utilisateurs" class="{{#if (eq currentPage 'utilisateurs')}}active{{/if}}">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <span>UTILISATEURS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/personnels/bannieres" class="{{#if (eq currentPage 'bannieres')}}active{{/if}}">
+                    <ion-icon name="images-outline"></ion-icon>
+                    <span>BANNIÈRES</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/personnels/historiques" class="{{#if (eq currentPage 'historiques')}}active{{/if}}">
+                    <ion-icon name="library-outline"></ion-icon>
+                    <span>HISTORIQUES</span>
+                </a>
+            </li>
+            <div class="btn-deconnexion">
+                <button type="submit">
+                    <ion-icon name="exit-outline"></ion-icon>
+                    <span>SE DÉCONNECTER</span>
+                </button>
+            </div>
+        </ul>
+
+        
+    </div>
+    <div class="open_menu">
+        <ion-icon name="reorder-two-outline"></ion-icon>
+    </div>
+</header>
