@@ -1032,7 +1032,7 @@ app.patch('/api/devis/:id', sendImage.single('image'), async (request, response)
         const afterUpdatedDevis = await getDevisById(id)
 
         if(afterUpdatedDevis.statut === true && afterUpdatedDevis.lu === true) {
-            await envoyerMailTraitement('eliezerefoyaefy2018@gmail.com', afterUpdatedDevis.nom_complet)
+            await envoyerMailTraitement(afterUpdatedDevis.email, afterUpdatedDevis.nom_complet)
             return response.status(201).json({ message: "La confirmation de l'ecture de devis a été envoyée", devisUpdated })
         }
 
