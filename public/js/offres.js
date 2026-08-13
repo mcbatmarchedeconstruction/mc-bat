@@ -5,11 +5,16 @@ const afficherOffre = async () => {
     
     const result = await response.json()
 
-    if (response.ok) {
+    if (response.ok && result.offre) {
 
-        const date = result.offre.created_at.split('T')[0]
+        let date = null
+
+        if(result.offre.created_at) {
+             date = result.offre.created_at.split('T')[0]
+        }
         lecture.innerHTML = `
             <img class="image-lecture" src="/assets/${result.offre.image}" alt="Photo de profil" >
+            
 
             <div class="detail-lecture">
                 <div class="date-secteur">

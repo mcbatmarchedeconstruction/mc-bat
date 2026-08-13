@@ -2,6 +2,7 @@
 const btnOpenMenu = document.querySelector('.open_menu ion-icon')
 const btnClosenMenu = document.querySelector('.close-menu ion-icon')
 let menuContainer = document.querySelector('.menu-conatiner')
+const menuLinks = document.querySelectorAll('.menu-conatiner a');
 
 // Filtres des listes visiteurs (actualités et réalisations).
 document.addEventListener('click', (event) => {
@@ -85,7 +86,7 @@ const afficherPrixMarche = async () => {
             contenuPrix.appendChild(div)
         })
     } else {
-        console.log(result.error);
+        return
     }
  }
 if (contenuPrix) {
@@ -126,7 +127,7 @@ const afficherActualite = async () => {
             contenuActualite.appendChild(div)
         })
     } else {
-        console.log(result.error);
+        return
     }
 }
 
@@ -149,7 +150,7 @@ const afficherService = async () => {
             contenuService.appendChild(p)
         })
     } else {
-        console.log(result.error);
+        return
     }
 }
 
@@ -261,6 +262,23 @@ if (btnClosenMenu) {
         btnOpenMenu.style.display = 'flex'
         
     })
+}
+
+// Fermer le menu lorsqu'on clique sur un lien
+if (menuLinks.length > 0) {
+    menuLinks.forEach(link => {
+
+        link.addEventListener('click', () => {
+
+            menuContainer.classList.remove('active');
+
+            if (btnOpenMenu) {
+                btnOpenMenu.style.display = 'flex';
+            }
+
+        });
+
+    });
 }
 
 
