@@ -1,4 +1,5 @@
 import pool from "../db/config.js";
+import { transporter } from "../config/mail.js";
 
 /**
  * Crée une nouvelle actualité dans la base de données.
@@ -99,3 +100,41 @@ export const countActualite = async () => {
 
         return Number(result.rows[0].count)
 }
+
+export const envoyerMailNewActualite = async (email, nom, titre) => {
+
+    await transporter.sendMail({
+        from: `"MC-BAT" <${process.env.EMAIL}>`,
+        to: email,
+        subject: "Nouvelle publication - MC-BAT",
+
+        html: `
+            <h2>Bonjour ${nom},</h2>
+
+            <p>
+                Nous avons le plaisir de vous informer qu'une nouvelle publication
+                vient d'être publiée sur le site de <strong>MC-BAT</strong>.
+            </p>
+
+            <h3>${titre}</h3>
+
+            <p>
+                Découvrez dès maintenant cette nouvelle actualité et restez
+                informé des dernières nouvelles de MC-BAT.
+            </p>
+
+            <p>
+                Merci de votre intérêt pour nos activités.
+            </p>
+
+            <br>
+
+            <p>
+                Cordialement,
+            </p>
+
+            <strong>MC-BAT</strong>
+        `
+    });
+
+};

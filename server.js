@@ -143,12 +143,12 @@ import {
     deletePersonnel, getPersonnelByEmail,
     countPersonnel
 } from './model/personnels.js';
-import { createActualite, getAllActualites, getAllActualitesStatutTrue, getActualitesLimit, getActualiteById, updateActualite, deleteActualite, countActualite } from './model/actualites.js';
+import { createActualite, getAllActualites, getAllActualitesStatutTrue, getActualitesLimit, getActualiteById, updateActualite, deleteActualite, countActualite, envoyerMailNewActualite } from './model/actualites.js';
 import { createBanniere, getAllBanniere, getBanniereById, updateBanniere, deleteBanniere } from './model/bannieres.js'
 import { createDevis, getAllDevis, getDevisById, getDevisLimit, updateDevis, deleteDevis, countDevis, envoyerMailTraitement } from './model/devis.js'
 import { createHistorique, getAllHistorique } from './model/historiques.js'
 import { createMetier, getAllMetier, getMetierById, updateMetier, deleteMetier } from './model/metier.js'
-import { createOffre, getAllOffre, getAllOffreStatutTrue, getOffreById, getOffreMois, updateOffre, deleteOffre } from './model/offres.js'
+import { createOffre, getAllOffre, getAllOffreStatutTrue, getOffreById, getOffreMois, updateOffre, deleteOffre, envoyerMailNewOffre } from './model/offres.js'
 import { createQualification, getAllQualification, getQualificationById, updateQualification, deletequalification } from './model/qualifications.js'
 import { createRealisation, getAllRealisation, getAllRealisationStatutTrue, getRealisationById, updateRealisation, deleteRealisation } from './model/realisations.js'
 import { createService, getAllService, getAllServiceStatutTrue, getServiceById, updateService, deleteService, countService } from './model/services.js'
@@ -157,6 +157,7 @@ import { createMarche, getAllMarche, getAllMarcheStatutTrue, getMarcheById, getM
 
 // Importation des fonctions de validation
 import { validatePersonnelData, validateUpdatePersonnel, estConnecte } from './middlewares/validation.cote.serveur.js';
+
 
 // Création des routes
 /*
@@ -715,6 +716,26 @@ app.post('/api/offres', sendImage.single('image'), async (request, response) => 
 
         if (!offreCreated) {
             return response.status(404).json({ error: "La création de l'offre échouée" })
+        }
+
+        const allUtilisateurs = await getAllUtilisateur()
+
+         if (offreCreated.statut === true) {
+
+            await Promise.all(
+                allUtilisateurs.map(utilisateur =>
+                    envoyerMailNewOffre(
+                        utilisateur.email,
+                        utilisateur.email,
+                        offreCreated.titre
+                    )
+                )
+            );
+
+            return response.status(201).json({
+                message: "Les notifications sur l'offre ont été envoyées avec succès",
+                offreCreated
+            });
         }
 
         return response.status(201).json({ message: "La création de l'offre a réussi", offreCreated })
@@ -1358,6 +1379,25 @@ app.post('/api/actualites', sendImage.single('image'), async (request, response)
             return response.status(400).json({ error: 'Creation de l\'actualité échouée' });
         }
 
+        const allUtilisateurs = await getAllUtilisateur()
+
+        if (actualiteCreated.statut === true) {
+            await Promise.all(
+                allUtilisateurs.map(utilisateur => {
+                    envoyerMailNewActualite(
+                        utilisateur.email,
+                        utilisateur.email,
+                        actualiteCreated.titre
+                    )
+                })
+            );
+
+            return response.status(201).json({
+                message: "Les notifications sur la publication ont été envoyées avec succès",
+                actualiteCreated
+            });
+        }
+
         return response.status(201).json({ message: "Création de l'actualité réussie", actualiteCreated })
     } catch (error) {
         return response.status(500).json({ message: 'Erreur lors de la création de l\'actualité', error: error.message });
@@ -1467,6 +1507,7 @@ app.get('/', async (request, response) => {
 // ========== actualités - visiteurs ==========
 app.get('/visiteurs/actualites/liste', async (request, response) => {
 
+
     response.render('actualites-liste',
         {
             layout: "main",
@@ -1510,7 +1551,11 @@ app.get('/visiteurs/actualites/lectures', async (request, response) => {
     response.render('actualite-lectures',
         {
             layout: "main",
-            title: "Lecture d'une actualité",
+            title: actualite.titre,
+            description: actualite.contenu,
+            image: actualite.image,
+            url: `/visiteurs/realisations/lectures?id=${actualite.id}`,
+
             currentPage: "actualite-lectures",
             actualite,
             styles: ["actualites.css"],
@@ -1563,7 +1608,11 @@ app.get('/visiteurs/realisations/lectures', async (request, response) => {
     response.render('lecture-realisations',
         {
             layout: "main",
-            title: "Lecture d'une réalisation",
+            title: realisation.titre,
+            description: realisation.description,
+            image: realisation.image,
+            url: `/visiteurs/realisations/lectures?id=${realisation.id}`,
+
             currentPage: "lecture-realisations",
             realisation,
             styles: ["realisations.css"],
@@ -1600,10 +1649,17 @@ app.get('/visiteurs/meilleurs/marches/prix', async (request, response) => {
 // ========== Offre spéciale du mois - visiteurs ==========
 app.get('/visiteurs/speciale/offres/mois', async (request, response) => {
 
+    const offre = await getOffreMois()
+
+    
+
     response.render('offres',
         {
             layout: "main",
-            title: "Offre spéciale du mois",
+             title: offre.titre,
+            description: offre.description,
+            image: offre.image,
+            url: `/visiteurs/speciale/offres/mois`,
             currentPage: "offres",
             styles: ["offres.css"],
             scripts: ["offres.js"]

@@ -1,4 +1,5 @@
 import pool from "../db/config.js";
+import { transporter } from "../config/mail.js";
 
 /**
  * Création d'une offre
@@ -115,3 +116,58 @@ export const deleteOffre= async (id) => {
     return result.rows[0]
 }
 
+export const envoyerMailNewOffre = async (email, nom, titre) => {
+
+    try {
+
+        const info = await transporter.sendMail({
+            from: `"MC-BAT" <${process.env.EMAIL}>`,
+            to: email,
+            subject: "Information MC-BAT : nouvelle offre",
+
+            html: `
+                <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+
+                    <h2>Bonjour ${nom},</h2>
+
+                    <p>
+                        Nous souhaitons vous informer qu'une nouvelle offre
+                        est disponible sur le site de <strong>MC-BAT</strong>.
+                    </p>
+
+                    <h3>${titre}</h3>
+
+                    <p>
+                        Vous pouvez consulter les détails de cette offre
+                        directement sur notre site internet.
+                    </p>
+
+                    <p>
+                        Nous vous remercions pour votre intérêt envers
+                        MC-BAT.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        Cordialement,
+                    </p>
+
+                    <strong>MC-BAT</strong>
+
+                </div>
+            `
+        });
+
+        console.log("✅ Offre envoyée à :", email);
+        console.log("📨 Message ID :", info.messageId);
+
+        return info;
+
+    } catch (error) {
+
+        console.error("❌ Erreur pour", email, ":", error.message);
+
+        throw error;
+    }
+};

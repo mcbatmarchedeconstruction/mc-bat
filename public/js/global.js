@@ -281,6 +281,32 @@ if (menuLinks.length > 0) {
     });
 }
 
+// animation scroll 
+const elements = document.querySelectorAll(
+    '.scroll-animation, .scroll-left, .scroll-right, .scroll-up'
+);
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+
+            // On arrête d'observer une fois l'animation terminée
+            observer.unobserve(entry.target);
+        }
+
+    });
+
+}, {
+    threshold: 0.15
+});
+
+elements.forEach(element => {
+    observer.observe(element);
+});
+
 
 
 

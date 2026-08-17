@@ -1405,3 +1405,46 @@ footer {
 .popup.warning .popup-btn {
     background: #f08a24;
 }
+
+
+/* Animation scroll */
+
+/* Animation au scroll */
+.scroll-animation {
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+         opacity 2s ease,
+        transform 2s ease-in-out;
+}
+
+.scroll-animation.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 2s ease, transform 2s ease-in-out;
+}
+
+.scroll-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 2s ease, transform 2s ease-in-out;
+}
+
+.scroll-up {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 2s ease, transform 2s ease-in-out;
+}
+
+.scroll-animation.show,
+.scroll-left.show,
+.scroll-right.show,
+.scroll-up.show {
+    opacity: 1;
+    transform: translate(0);
+}
