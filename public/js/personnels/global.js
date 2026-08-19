@@ -3,6 +3,39 @@ const btnOpenMenu = document.querySelector('.open_menu ion-icon')
 const btnCloseMenu = document.querySelector('.close-menu ion-icon')
 const menuContainer = document.querySelector('.menu-conatiner')
 
+// Affiche les nombres avec des séparateurs de milliers et, si nécessaire,
+// deux décimales (ex. : 198.458.09).
+window.formaterNombre = (valeur) => {
+    if (valeur === null || valeur === undefined || valeur === '') return ''
+    const nombre = Number(valeur)
+    if (!Number.isFinite(nombre)) return valeur ?? ''
+
+    const [entier, decimal = ''] = Math.abs(nombre).toFixed(2).split('.')
+    const entierFormate = entier.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    const decimales = decimal === '00' ? '' : `.${decimal}`
+    return `${nombre < 0 ? '-' : ''}${entierFormate}${decimales}`
+}
+
+document.querySelectorAll('.form-add-edite').forEach(conteneur => {
+    const boutonFermer = document.createElement('button')
+    boutonFermer.type = 'button'
+    boutonFermer.className = 'btn-fermer-formulaire'
+    boutonFermer.setAttribute('aria-label', 'Fermer le formulaire')
+    boutonFermer.innerHTML = '<ion-icon name="close-outline"></ion-icon>'
+
+    boutonFermer.addEventListener('click', () => {
+        const estEnModification = conteneur.querySelector('.modifier')?.style.display !== 'none'
+        conteneur.querySelector('form')?.reset()
+        conteneur.style.display = 'none'
+
+        // Les lignes retirées lors de l'ouverture d'une modification sont
+        // restaurées en rechargeant la liste.
+        if (estEnModification) window.location.reload()
+    })
+
+    conteneur.prepend(boutonFermer)
+})
+
 const normaliserFiltre = (valeur) => (valeur || '')
     .toLocaleLowerCase()
     .normalize('NFD')
@@ -346,7 +379,7 @@ const afficherDevis = async () => {
                 <td>${devis.email}</td>
                 <td>${devis.telephone}</td>
                 <td>${devis.secteur}</td>
-                <td>${devis.budget}$</td>
+                <td>${window.formaterNombre(devis.budget)} $</td>
                 <td><p class="${devis.lu === true ? 'waiting' : devis.statut == true ? 'unnotif' : 'notif'}">${devis.lu === true ? 'En traitement...' : devis.statut == true ? 'Nouveau' : 'Terminer'}</p></td>
                 <td>${date}</td>
             `

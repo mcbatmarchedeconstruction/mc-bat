@@ -12,7 +12,7 @@ const afficherService = async () => {
             div.classList.add('service')
 
             div.innerHTML = `
-                <img src="/assets/${service.image}" alt="Image service">
+                <img src="${service.image}" alt="Image service">
                 <h3>${service.titre}</h3>
                 <p>${service.description}</p>
             `

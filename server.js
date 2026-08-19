@@ -10,6 +10,7 @@ import memorystore from 'memorystore';
 import passport from 'passport';
 import './auth.js'
 import multer from 'multer';
+import cloudinary  from './config/claudinary.js';
 
 
 // Création de l'application Express
@@ -122,15 +123,33 @@ app.use((req, res, next) => {
 });
 
 
-// multer pour envoyer les images
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/assets');
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname);
-    }
-});
+// multer pour envoyer les données
+const storage = multer.memoryStorage();
+
+/// claudinary 
+
+const uploadImage = (fileBuffer, folder = "mc-bat") => {
+    return new Promise((resolve, reject) => {
+
+        const stream = cloudinary.uploader.upload_stream(
+            {
+                folder: folder,
+                resource_type: "image"
+            },
+            (error, result) => {
+
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(result);
+                }
+
+            }
+        );
+
+        stream.end(fileBuffer);
+    });
+};
 const sendImage = multer({ storage });
 
 // Autres middlewares
@@ -228,7 +247,9 @@ app.post('/api/marches', sendImage.single('image'), async (request, response) =>
 
         const dataMarche = request.body
         if (request.file) {
-            dataMarche.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataMarche.image = image.secure_url;
         }
         if (!dataMarche.produit || dataMarche.produit.trim() === "" || !dataMarche.details_produit || dataMarche.details_produit.trim() === "" || !dataMarche.prix || dataMarche.prix.trim() === "" || !dataMarche.image) {
             return response.status(400).json({ error: "Remplissez les champs obligatoires (*)" })
@@ -291,7 +312,9 @@ app.patch('/api/marches/:id', sendImage.single('image'), async (request, respons
         const { id } = request.params
         const dataMarche = request.body
         if (request.file) {
-            dataMarche.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataMarche.image = image.secure_url;
         }
 
         // if (!dataMarche.produit || dataMarche.produit.trim() === "" || !dataMarche.details_produit || dataMarche.details_produit.trim() === "" || !dataMarche.prix || dataMarche.prix.trim() === "") {
@@ -405,7 +428,9 @@ app.post('/api/services', sendImage.single('image'), async (request, response) =
     try {
         const dataService = request.body
         if (request.file) {
-            dataService.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataService.image = image.secure_url;
         }
         if (!dataService.image || !dataService.titre || dataService.titre.trim() === "" || !dataService.description || dataService.description.trim() === "") {
             return response.status(400).json({ error: "Remplissez les champs obligatoires (*)" })
@@ -455,7 +480,9 @@ app.patch('/api/services/:id', sendImage.single('image'), async (request, respon
         const { id } = request.params
         const dataService = request.body
         if (request.file) {
-            dataService.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataService.image = image.secure_url;
         }
         if (dataService.titre.trim() === "" && dataService.description.trim() === "") {
             return response.status(400).json({ error: "Remplissez les champs obligatoires (*)" })
@@ -507,7 +534,9 @@ app.post('/api/realisations', sendImage.single('image'), async (request, respons
     try {
         const dataRealisation = request.body
         if (request.file) {
-            dataRealisation.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataRealisation.image = image.secure_url;
         }
 
         if (!dataRealisation.image || !dataRealisation.secteur || !dataRealisation.titre || dataRealisation.titre.trim() === "" || !dataRealisation.description || dataRealisation.description.trim() === "") {
@@ -558,7 +587,9 @@ app.patch('/api/realisations/:id', sendImage.single('image'), async (request, re
         const { id } = request.params
         const dataRealisation = request.body
         if (request.file) {
-            dataRealisation.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataRealisation.image = image.secure_url;
         }
         // if (dataRealisation.titre.trim() === "" && dataRealisation.description.trim() === "" && dataRealisation.secteur.trim() === '') {
         //     return response.status(400).json({ error: "Remplissez les champs obligatoires (*)" })
@@ -709,7 +740,9 @@ app.post('/api/offres', sendImage.single('image'), async (request, response) => 
         }
 
         if (request.file) {
-            dataOffre.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataOffre.image = image.secure_url;
         }
 
         const offreCreated = await createOffre(dataOffre)
@@ -729,6 +762,8 @@ app.post('/api/offres', sendImage.single('image'), async (request, response) => 
                         utilisateur.email,
                         offreCreated.titre
                     )
+                   
+                    
                 )
             );
 
@@ -791,7 +826,9 @@ app.patch('/api/offres/:id', sendImage.single('image'), async (request, response
         const dataOffre = request.body
 
         if (request.file) {
-            dataOffre.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataOffre.image = image.secure_url;
         }
 
         Object.keys(dataOffre).forEach((key) => {
@@ -1096,7 +1133,9 @@ app.post('/api/bannieres', sendImage.single('image'), async (request, response) 
     try {
         const dataBanniere = request.body
         if (request.file) {
-            dataBanniere.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataBanniere.image = image.secure_url;
         }
         if (!dataBanniere.image || !dataBanniere.citation || dataBanniere.citation.trim() === "") {
             return response.status(400).json({ error: "Remplissez les champs obligatoires (*)" })
@@ -1147,7 +1186,9 @@ app.patch('/api/bannieres/:id', sendImage.single('image'), async (request, respo
         const dataBanniere = request.body
 
         if (request.file) {
-            dataBanniere.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataBanniere.image = image.secure_url;
         }
 
 
@@ -1201,7 +1242,9 @@ app.post('/api/personnels', sendImage.single('image'), async (request, response)
         // Récupération des données du personnel depuis le corps de la requête
         const dataPersonnel = request.body;
         if (request.file) {
-            dataPersonnel.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataPersonnel.image = image.secure_url;
         }
 
         // Validation des champs obligatoires
@@ -1299,7 +1342,9 @@ app.patch('/api/personnels/:id', sendImage.single('image'), async (request, resp
 
         // Nouvelle image
         if (request.file) {
-            dataPersonnel.image = request.file.filename;
+            const image = await uploadImage(request.file.buffer);
+            
+            dataPersonnel.image = image.secure_url;
         }
 
         // Transformer les champs vides en null
@@ -1366,7 +1411,9 @@ app.post('/api/actualites', sendImage.single('image'), async (request, response)
 
         const dataActualite = request.body
         if (request.file) {
-            dataActualite.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataActualite.image = image.secure_url;
         }
 
         if (!dataActualite.image || !dataActualite.secteur || !dataActualite.titre || !dataActualite.contenu) {
@@ -1448,7 +1495,9 @@ app.patch('/api/actualites/:id', sendImage.single('image'), async (request, resp
         const dataActualite = request.body
 
         if (request.file) {
-            dataActualite.image = request.file.filename
+            const image = await uploadImage(request.file.buffer);
+            
+            dataActualite.image = image.secure_url;
         }
 
         if (dataActualite.secteur.trim() === '' && dataActualite.titre.trim() === '' && dataActualite.contenu.trim() === '' && dataActualite.statut.trim() === '') {

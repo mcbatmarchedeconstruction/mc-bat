@@ -84,6 +84,27 @@ img {
 
 }
 
+.form-add-edite {
+    position: relative;
+}
+
+.btn-fermer-formulaire {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--couleur-redHeader);
+}
+
+.btn-fermer-formulaire ion-icon {
+    font-size: 2rem;
+}
+
 /* Header */
 header {
     position: -webkit-sticky;

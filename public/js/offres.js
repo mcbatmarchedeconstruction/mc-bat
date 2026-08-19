@@ -13,7 +13,7 @@ const afficherOffre = async () => {
              date = result.offre.created_at.split('T')[0]
         }
         lecture.innerHTML = `
-            <img class="image-lecture" src="/assets/${result.offre.image}" alt="Photo de profil" >
+            <img class="image-lecture" src="${result.offre.image}" alt="Photo de profil" >
             
 
             <div class="detail-lecture">

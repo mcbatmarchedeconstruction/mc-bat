@@ -121,6 +121,8 @@ export const envoyerMailNewOffre = async (email, nom, titre) => {
     try {
 
         const info = await transporter.sendMail({
+            
+            
             from: `"MC-BAT" <${process.env.EMAIL}>`,
             to: email,
             subject: "Information MC-BAT : nouvelle offre",
@@ -159,14 +161,12 @@ export const envoyerMailNewOffre = async (email, nom, titre) => {
             `
         });
 
-        console.log("✅ Offre envoyée à :", email);
-        console.log("📨 Message ID :", info.messageId);
+
 
         return info;
 
     } catch (error) {
 
-        console.error("❌ Erreur pour", email, ":", error.message);
 
         throw error;
     }

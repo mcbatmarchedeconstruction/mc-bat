@@ -13,7 +13,7 @@ const afficherRealisations = async () => {
             a.dataset.secteur = realisation.secteur
 
             a.innerHTML = `
-                <img src="/assets/${realisation.image}" alt="Photo du projet réalisé">
+                <img src="${realisation.image}" alt="Photo du projet réalisé">
                 <p>
                 ${realisation.description}
                 </p>

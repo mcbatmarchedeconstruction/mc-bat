@@ -46,9 +46,9 @@ const createOffre = async (event) => {
 
         tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${result.offreCreated.image}" alt="Photo offre"></td>
+                <td><img src="${result.offreCreated.image}" alt="Photo offre"></td>
                 <td>- ${result.offreCreated.remise}%</td>
-                <td>${result.offreCreated.prix}$</td>
+                <td>${window.formaterNombre(result.offreCreated.prix)} $</td>
                 <td class="limit-description"><p>${result.offreCreated.description}</p></td>
                 <td><p class="${result.offreCreated.statut === true ? 'notif' : 'unnotif'}">${result.offreCreated.statut ? 'Actif' : 'Suspendu'}</p></td>
                 <td>${date}</td>
@@ -163,10 +163,10 @@ const editeOffre = async (event) => {
 
             tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${result.offreUpdated.image === '' ?
+                <td><img src="${result.offreUpdated.image === '' ?
                     dataValueResult.offre.image : result.offreUpdated.image}" alt="Photo offre"></td>
                 <td>- ${result.offreUpdated.remise === '' ? dataValueResult.offre.remise : result.offreUpdated.remise}%</td>
-                <td>${result.offreUpdated.prix === '' ? dataValueResult.offre.prix : result.offreUpdated.prix}$</td>
+                <td>${window.formaterNombre(result.offreUpdated.prix === '' ? dataValueResult.offre.prix : result.offreUpdated.prix)} $</td>
                 <td class="limit-description"><p>${result.offreUpdated.description === '' ? dataValueResult.offre.description : result.offreUpdated.description}</p></td>
                 <td><p class="${result.offreUpdated.statut === true ? 'notif' : 'unnotif'}">${result.offreUpdated.statut ? 'Actif' : 'Suspendu'}</p></td>
                 <td>${date}</td>
@@ -268,9 +268,9 @@ const afficherOffres = async () => {
 
             tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${offres.image}" alt="Photo offre"></td>
+                <td><img src="${offres.image}" alt="Photo offre"></td>
                 <td>- ${offres.remise}%</td>
-                <td>${offres.prix}$</td>
+                <td>${window.formaterNombre(offres.prix)} $</td>
                 <td class="limit-description"><p>${offres.description}</p></td>
                 <td><p class="${offres.statut === true ? 'notif' : 'unnotif'}">${offres.statut ? 'Actif' : 'Suspendu'}</p></td>
                 <td>${date}</td>
@@ -354,4 +354,3 @@ if (tbody) {
 if (btnOpenForm) {
     btnOpenForm.addEventListener('click', openForm)
 }
-

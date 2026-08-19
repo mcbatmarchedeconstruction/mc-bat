@@ -13,7 +13,7 @@ const afficherMarches = async () => {
             tr.innerHTML = `
                 <td>${marche.produit}</td>
                 <td>${marche.details_produit}</td>
-                <td>${marche.prix}$</td>
+                <td>${window.formaterNombre(marche.prix)} $</td>
 
 
             `

@@ -186,6 +186,11 @@ header {
     height: 45rem;
     flex-shrink: 0;
     color: var(--couleur-withRed);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 45rem;
 }
 .banniere p {
     padding: 1rem;
@@ -193,27 +198,7 @@ header {
     font-family: monospace;
     width: 100%;
 }
-.image1 {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 45rem;
-}
-.image2 {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 45rem;
-}
-.image3 {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 45rem;
-}
+
 @keyframes slide {
     
     0%, 20% {
@@ -826,13 +811,7 @@ footer {
     .open_menu, .close-menu {
         display: none;
     }
-    .image1 {
-        height: 50rem;
-    }
-    .image2 {
-        height: 50rem;
-    }
-    .image3 {
+    .banniere {
         height: 50rem;
     }
 

@@ -46,7 +46,7 @@ const createActualite = async (event) => {
 
         tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${result.actualiteCreated.image}" alt="Photo actualité"></td>
+                <td><img src="${result.actualiteCreated.image}" alt="Photo actualité"></td>
                 <td>${result.actualiteCreated.secteur}</td>
                 <td>${result.actualiteCreated.titre}</td>
                 <td class="limit-description"><p>${result.actualiteCreated.contenu}</p></td>
@@ -164,7 +164,7 @@ const editeActualite = async (event) => {
 
             tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${result.actualiteUpdated.image === '' ?
+                <td><img src="${result.actualiteUpdated.image === '' ?
                     dataValueResult.actualite.image : result.actualiteUpdated.image}" alt="Photo actualité"></td>
                 <td>${result.actualiteUpdated.secteur === '' ? dataValueResult.actualite.secteur : result.actualiteUpdated.secteur}</td>
                 <td>${result.actualiteUpdated.titre === '' ? dataValueResult.actualite.titre : result.actualiteUpdated.titre}</td>
@@ -270,7 +270,7 @@ const afficherActualite = async () => {
 
             tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${actualites.image}" alt="Photo offre"></td>
+                <td><img src="${actualites.image}" alt="Photo offre"></td>
                 <td>${actualites.secteur}</td>
                 <td>${actualites.titre}</td>
                 <td class="limit-description"><p>${actualites.contenu}</p></td>

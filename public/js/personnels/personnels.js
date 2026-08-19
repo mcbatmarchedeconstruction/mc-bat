@@ -155,7 +155,7 @@ const createPersonnels = async (event) => {
             if (seeResponse.ok) {
 
 
-                profilImg.src = `/assets/${seeResult.personnel.image}`
+                profilImg.src = `${seeResult.personnel.image}`
 
                 prifilInfo[0].textContent = seeResult.personnel.role
                 prifilInfo[1].textContent = seeResult.personnel.nom_complet
@@ -171,11 +171,11 @@ const createPersonnels = async (event) => {
                 prifilInfo[10].textContent = seeResult.personnel.telephone;
                 prifilInfo[11].textContent = metier.ok ? metierResult.metier.titre : '';
                 prifilInfo[12].textContent = qualif.ok ? qualifResult.qualification.niveau_qualification : '';
-                prifilInfo[13].textContent = seeResult.personnel.annee_experience;
+                prifilInfo[13].textContent = window.formaterNombre(seeResult.personnel.annee_experience);
                 prifilInfo[14].textContent = seeResult.personnel.code_personnel;
                 prifilInfo[15].textContent = date.date_embauche;
                 prifilInfo[16].textContent = date.date_fin_contrat ?? "Aucune";
-                prifilInfo[17].textContent = seeResult.personnel.salaire;
+                prifilInfo[17].textContent = `${window.formaterNombre(seeResult.personnel.salaire)} $`;
                 prifilInfo[18].textContent = seeResult.personnel.statut ? "Actif" : "Suspendu";
 
                 profil.classList.add("open");
@@ -356,7 +356,7 @@ const editePersonnel = async (event) => {
                 if (seeResponse.ok) {
 
 
-                    profilImg.src = `/assets/${seeResult.personnel.image}`
+                    profilImg.src = `${seeResult.personnel.image}`
 
                     prifilInfo[0].textContent = seeResult.personnel.role
                     prifilInfo[1].textContent = seeResult.personnel.nom_complet
@@ -372,11 +372,11 @@ const editePersonnel = async (event) => {
                     prifilInfo[10].textContent = seeResult.personnel.telephone;
                     prifilInfo[11].textContent = metier.ok ? metierResult.metier.titre : '';
                     prifilInfo[12].textContent = qualif.ok ? qualifResult.qualification.niveau_qualification : '';
-                    prifilInfo[13].textContent = seeResult.personnel.annee_experience;
+                    prifilInfo[13].textContent = window.formaterNombre(seeResult.personnel.annee_experience);
                     prifilInfo[14].textContent = seeResult.personnel.code_personnel;
                     prifilInfo[15].textContent = date.date_embauche;
                     prifilInfo[16].textContent = date.date_fin_contrat ?? "Aucune";
-                    prifilInfo[17].textContent = seeResult.personnel.salaire;
+                    prifilInfo[17].textContent = `${window.formaterNombre(seeResult.personnel.salaire)} $`;
                     prifilInfo[18].textContent = seeResult.personnel.statut ? "Actif" : "Suspendu";
 
                     profil.classList.add("open");
@@ -575,7 +575,7 @@ const afficherPersonnels = async () => {
                 if (seeResponse.ok) {
 
 
-                    profilImg.src = `/assets/${seeResult.personnel.image}`
+                    profilImg.src = `${seeResult.personnel.image}`
 
                     prifilInfo[0].textContent = seeResult.personnel.role
                     prifilInfo[1].textContent = seeResult.personnel.nom_complet
@@ -591,11 +591,11 @@ const afficherPersonnels = async () => {
                     prifilInfo[10].textContent = seeResult.personnel.telephone;
                     prifilInfo[11].textContent = metier.ok ? metierResult.metier.titre : '';
                     prifilInfo[12].textContent = qualif.ok ? qualifResult.qualification.niveau_qualification : '';
-                    prifilInfo[13].textContent = seeResult.personnel.annee_experience;
+                    prifilInfo[13].textContent = window.formaterNombre(seeResult.personnel.annee_experience);
                     prifilInfo[14].textContent = seeResult.personnel.code_personnel;
                     prifilInfo[15].textContent = date.date_embauche;
                     prifilInfo[16].textContent = date.date_fin_contrat ?? "Aucune";
-                    prifilInfo[17].textContent = seeResult.personnel.salaire;
+                    prifilInfo[17].textContent = `${window.formaterNombre(seeResult.personnel.salaire)} $`;
                     prifilInfo[18].textContent = seeResult.personnel.statut ? "Actif" : "Suspendu";
 
                     profil.classList.add("open");

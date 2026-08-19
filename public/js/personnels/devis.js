@@ -17,7 +17,7 @@ const afficherDevis = async () => {
             <td>${devis.email}</td>
             <td>${devis.telephone}</td>
             <td>${devis.secteur}</td>
-            <td>${devis.budget}$</td>
+            <td>${window.formaterNombre(devis.budget)} $</td>
             <td><p class="${devis.lu === true ? 'waiting' : devis.statut == true ? 'unnotif' : 'notif'}">${devis.lu === true ? 'En traitement...' : devis.statut == true ? 'Nouveau' : 'Terminer'}</p></td>
             <td>${date}</td>
             <td class="action">

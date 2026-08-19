@@ -46,7 +46,7 @@ const createService = async (event) => {
 
         tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${result.serviceCreated.image}" alt="Photo offre"></td>
+                <td><img src="${result.serviceCreated.image}" alt="Photo offre"></td>
                 <td>${result.serviceCreated.titre}</td>
                 <td class="limit-description"><p>${result.serviceCreated.description}</p></td>
                 <td><p class="${result.serviceCreated.statut === true ? 'notif' : 'unnotif'}">${result.serviceCreated.statut ? 'Actif' : 'Suspendu'}</p></td>
@@ -164,7 +164,7 @@ const editeService = async (event) => {
 
             tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${result.serviceUpdated.image === '' ?
+                <td><img src="${result.serviceUpdated.image === '' ?
                     dataValueResult.service.image : result.serviceUpdated.image}" alt="Photo service"></td>
                 <td>${result.serviceUpdated.titre === '' ? dataValueResult.service.titre : result.serviceUpdated.titre}</td>
                 <td class="limit-description"><p>${result.serviceUpdated.description === '' ? dataValueResult.service.description : result.serviceUpdated.description}</p></td>
@@ -268,7 +268,7 @@ const afficherService = async () => {
 
             tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${services.image}" alt="Photo offre"></td>
+                <td><img src="${services.image}" alt="Photo offre"></td>
                 <td>${services.titre}</td>
                 <td class="limit-description"><p>${services.description}</p></td>
                 <td><p class="${services.statut === true ? 'notif' : 'unnotif'}">${services.statut ? 'Actif' : 'Suspendu'}</p></td>

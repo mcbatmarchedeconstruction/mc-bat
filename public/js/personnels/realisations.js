@@ -57,7 +57,7 @@ const createRealisation = async (event) => {
         tr.innerHTML = `
             <tr>
 
-                <td><img src="/assets/${result.realisationCreated.image}" alt="Photo realisation"></td>
+                <td><img src="${result.realisationCreated.image}" alt="Photo realisation"></td>
                 <td>${result.realisationCreated.secteur}</td>
                 <td>${result.realisationCreated.titre}</td>
                 <td class="limit-description"><p>${result.realisationCreated.description}</p></td>
@@ -187,7 +187,7 @@ const editeRealisation = async (event) => {
 
             tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${result.realisationUpdated.image === '' ?
+                <td><img src="${result.realisationUpdated.image === '' ?
                     dataValueResult.realisation.image : result.realisationUpdated.image}" alt="Photo offre"></td>
                 <td>${result.realisationUpdated.secteur === '' ? dataValueResult.realisation.secteur : result.realisationUpdated.secteur}</td>
                 <td>${result.realisationUpdated.titre === '' ? dataValueResult.realisation.titre : result.realisationUpdated.titre}</td>
@@ -292,7 +292,7 @@ const afficherRealisation = async () => {
 
             tr.innerHTML = `
             <tr>
-                <td><img src="/assets/${realisations.image}" alt="Photo offre"></td>
+                <td><img src="${realisations.image}" alt="Photo offre"></td>
                 <td>${realisations.secteur}</td>
                 <td>${realisations.titre}</td>
                 <td class="limit-description"><p>${realisations.description}</p></td>

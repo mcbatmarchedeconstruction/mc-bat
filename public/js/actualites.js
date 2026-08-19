@@ -14,7 +14,7 @@ const afficherActualite = async () => {
             a.dataset.secteur = actualite.secteur
 
             a.innerHTML = `
-                <img src="/assets/${actualite.image}" alt="Photo du projet réalisé">
+                <img src="${actualite.image}" alt="Photo du projet réalisé">
                 <p>
                     ${actualite.contenu}
                 </p>

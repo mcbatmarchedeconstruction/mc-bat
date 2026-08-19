@@ -1,8 +1,23 @@
+
+
 // Menu 
 const btnOpenMenu = document.querySelector('.open_menu ion-icon')
 const btnClosenMenu = document.querySelector('.close-menu ion-icon')
 let menuContainer = document.querySelector('.menu-conatiner')
 const menuLinks = document.querySelectorAll('.menu-conatiner a');
+
+// Affiche les nombres avec des séparateurs de milliers et, si nécessaire,
+// deux décimales (ex. : 198.458.09).
+window.formaterNombre = (valeur) => {
+    if (valeur === null || valeur === undefined || valeur === '') return ''
+    const nombre = Number(valeur)
+    if (!Number.isFinite(nombre)) return valeur ?? ''
+
+    const [entier, decimal = ''] = Math.abs(nombre).toFixed(2).split('.')
+    const entierFormate = entier.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    const decimales = decimal === '00' ? '' : `.${decimal}`
+    return `${nombre < 0 ? '-' : ''}${entierFormate}${decimales}`
+}
 
 // Filtres des listes visiteurs (actualités et réalisations).
 document.addEventListener('click', (event) => {
@@ -20,15 +35,39 @@ document.addEventListener('click', (event) => {
 })
 
 // Bannières
-const image1 = document.querySelector('.image1')
-const image2 = document.querySelector('.image2')
-const image3 = document.querySelector('.image3')
+const imageCarousel = document.querySelector('.container-banniere')
 
-if (image1 && image2 && image3) {
+const  afficherBannieres = async () => {
+    
+    const response = await fetch ('/api/bannieres/', {})
 
-    image1.style.backgroundImage = "linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), url('/assets/img5.jpeg')"
-    image2.style.backgroundImage = "linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), url('/assets/img2.jpeg')"
-    image3.style.backgroundImage = "linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), url('/assets/img1.jpeg')"
+    const result = await response.json()
+
+    if (response.ok) {
+
+
+        result.bannieres.map((banniere) => {
+            const div = document.createElement('div')
+            div.className = 'banniere'
+            const p = document.createElement('p')
+
+            p.innerHTML = banniere.citation
+
+            div.appendChild(p)
+
+            div.style.backgroundImage = `linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), url(${banniere.image})`
+
+            imageCarousel.appendChild(div)
+        });
+        
+        
+    }
+}
+
+if (imageCarousel) {
+
+    afficherBannieres()
+
 }
 
 // Offres
@@ -76,10 +115,10 @@ const afficherPrixMarche = async () => {
             div.classList.add('prix')
 
             div.innerHTML = `
-                <img src="/assets/${marche.image}" alt="Image produit">
+                <img src="${marche.image}" alt="Image produit">
                 <div class="detail-prix">
                     <h3>${marche.produit}</h3>
-                    <p>${marche.prix}$</p>
+                    <p>${window.formaterNombre(marche.prix)} $</p>
                     <span>Toutes ces informations ont été vérifiées avant d’être publiées.</span>
                 </div>
             `
@@ -109,7 +148,7 @@ const afficherActualite = async () => {
 
             div.innerHTML = `
                 <div class="image">
-                    <img src="/assets/${actualites.image}" alt="Image actualité">
+                    <img src="${actualites.image}" alt="Image actualité">
                     <p>${actualites.secteur}</p>
                 </div>
                 <div class="actualite-detail">

@@ -51,7 +51,7 @@ const creerBanniere = async (event) => {
 
         tr.innerHTML = `
                 <td>
-                    <img src="/assets/${result.banniereCreated.image}" alt="Image bannière">
+                    <img src="${result.banniereCreated.image}" alt="Image bannière">
                 </td>
                 <td class="citation">
                     <p>
@@ -119,7 +119,7 @@ const editeBanniere = async (event) => {
 
             tr.innerHTML = `
                 <td>
-                    <img src="/assets/${result.banniereUpdated.image === ''?resultDataValue.bannieres.image : result.banniereUpdated.image}" alt="Image bannière">
+                    <img src="${result.banniereUpdated.image === ''?resultDataValue.bannieres.image : result.banniereUpdated.image}" alt="Image bannière">
                 </td>
                 <td class="citation">
                     <p>
@@ -177,7 +177,7 @@ const afficherBannieres = async () => {
 
             tr.innerHTML = `
                 <td>
-                    <img src="/assets/${banniere.image}" alt="Image bannière">
+                    <img src="${banniere.image}" alt="Image bannière">
                 </td>
                 <td class="citation">
                     <p>

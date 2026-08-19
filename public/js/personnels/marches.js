@@ -44,10 +44,10 @@ const createMarche = async (event) => {
         const date = result.marcheCreated.created_at.split('T')[0]
 
         tr.innerHTML = `
-                <td><img src="/assets/${result.marcheCreated.image}" alt=""></td>
+                <td><img src="${result.marcheCreated.image}" alt=""></td>
                 <td>${result.marcheCreated.produit}</td>
                 <td class="limit-description"><p>${result.marcheCreated.details_produit}</p></td>
-                <td>${result.marcheCreated.prix}</td>
+                <td>${window.formaterNombre(result.marcheCreated.prix)}</td>
                 <td><p class="${result.marcheCreated.statut ? 'nofif' : 'unnotif'}">${result.marcheCreated.statut ? 'Actif' : 'Suspendu'}</p></td>
                 <td>${date}</td>
                 <td class="action">
@@ -151,10 +151,10 @@ const editeMarche = async (event) => {
             const date = resultValueData.marche.created_at.split('T')[0]
 
             tr.innerHTML = `
-                <td><img src="/assets/${result.marcheUpdated.image === ''?resultValueData.marche.image : result.marcheUpdated.image}" alt=""></td>
+                <td><img src="${result.marcheUpdated.image === ''?resultValueData.marche.image : result.marcheUpdated.image}" alt=""></td>
                 <td>${result.marcheUpdated.produit === ''?resultValueData.marche.produit : result.marcheUpdated.produit}</td>
                 <td class="limit-description"><p>${result.marcheUpdated.details_produit === ''?resultValueData.marche.details_produit : result.marcheUpdated.details_produit}</p></td>
-                <td>${result.marcheUpdated.prix === ''?resultValueData.marche.prix : result.marcheUpdated.prix }</td>
+                <td>${window.formaterNombre(result.marcheUpdated.prix === '' ? resultValueData.marche.prix : result.marcheUpdated.prix)}</td>
                 <td><p class="${result.marcheUpdated.statut === true? 'notif' : 'unnotif'}">${result.marcheUpdated.statut === true? 'Actif' : 'Suspendu'}</p></td>
                 <td>${date}</td>
                 <td class="action">
@@ -249,10 +249,10 @@ const afficherMarche = async () => {
             const date = marches.created_at.split('T')[0]
 
             tr.innerHTML = `
-                <td><img src="/assets/${marches.image}" alt=""></td>
+                <td><img src="${marches.image}" alt=""></td>
                 <td>${marches.produit}</td>
                 <td class="limit-description"><p>${marches.details_produit}</p></td>
-                <td>${marches.prix}</td>
+                <td>${window.formaterNombre(marches.prix)}</td>
                 <td><p class="${marches.statut ? 'notif' : 'unnotif'}">${marches.statut ? 'Actif' : 'Suspendu'}</p></td>
                 <td>${date}</td>
                 <td class="action">
@@ -332,4 +332,3 @@ if (tbody) {
 if (btnOpenForm) {
     btnOpenForm.addEventListener('click', openForm)
 }
-
