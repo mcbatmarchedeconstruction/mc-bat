@@ -1603,7 +1603,7 @@ app.get('/visiteurs/actualites/lectures', async (request, response) => {
             title: actualite.titre,
             description: actualite.contenu,
             image: actualite.image,
-            url: `/visiteurs/realisations/lectures?id=${actualite.id}`,
+            url: `/visiteurs/actualites/lectures?id=${actualite.id}`,
 
             currentPage: "actualite-lectures",
             actualite,
