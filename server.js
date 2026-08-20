@@ -2062,6 +2062,6 @@ app.post('/api/deconnexion', async (request, response, next) => {
 // Démarrage du serveur
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server est en cours d'exécution sur le port ${PORT}`);
 });
