@@ -18,7 +18,7 @@ const afficherDevis = async () => {
             <td>${devis.telephone}</td>
             <td>${devis.secteur}</td>
             <td>${window.formaterNombre(devis.budget)} $</td>
-            <td><p class="${devis.lu === true ? 'waiting' : devis.statut == true ? 'unnotif' : 'notif'}">${devis.lu === true ? 'En traitement...' : devis.statut == true ? 'Nouveau' : 'Terminer'}</p></td>
+            <td><p class="${devis.lu === true ? 'waiting' : devis.statut == true ? 'unnotif' : 'notif'}">${devis.lu === true ? 'En traitement...' : devis.statut == true ? 'Nouveau' : 'Terminé'}</p></td>
             <td>${date}</td>
             <td class="action">
                 <div class="btn-action">
@@ -124,7 +124,7 @@ const afficherDevis = async () => {
                     tr.querySelector('td p').classList.remove('waiting')
                     tr.querySelector('td p').classList.remove('unnotif')
                     tr.querySelector('td p').classList.add('notif')
-                    tr.querySelector('td p').innerHTML = 'Terminer'
+                    tr.querySelector('td p').innerHTML = 'Terminé'
                     btn.classList.add('terminier')
                     btn.name = 'checkmark-done-outline'
                     document.querySelector('.message2').innerHTML = ""

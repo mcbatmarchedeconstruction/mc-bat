@@ -27,7 +27,7 @@ export const getAllActualites = async () => {
 
     return result.rows;
 }
-/** * Récupère toutes les actualités de la base de données. statut true
+/** * Récupère toutes les actualités publiées de la base de données.
  * @returns {Array} Liste des actualités
  */
 export const getAllActualitesStatutTrue = async () => {
@@ -38,7 +38,7 @@ export const getAllActualitesStatutTrue = async () => {
 
     return result.rows;
 }
-/** * Récupère  l'actualités limite 5
+/** * Récupère les cinq actualités publiées les plus récentes.
  * @returns {Array} Liste des actualités
  */
 export const getActualitesLimit = async () => {

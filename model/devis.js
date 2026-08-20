@@ -27,7 +27,7 @@ export const createDevis = async (dataDevis) => {
 }
 
 /**
- * Récuperatin de tous les devis
+ * Récupération de tous les devis.
  * @returns {Array}
  */
 export const getAllDevis = async () => {
@@ -43,7 +43,7 @@ export const getAllDevis = async () => {
 }
 
 /**
- * Récuperatin de devis limit 5
+ * Récupération des cinq devis les plus récents.
  * @returns {Array}
  */
 export const getDevisLimit = async () => {
@@ -59,7 +59,7 @@ export const getDevisLimit = async () => {
 }
 
 /**
- * Récuperatin par id
+ * Récupération d'un devis par son identifiant.
  * @returns {Array}
  */
 export const getDevisById = async (id) => {

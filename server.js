@@ -869,7 +869,7 @@ app.delete('/api/offres/:id', async (request, response) => {
  * 
  */
 /** 
- *  ======= Début route pour metier. =======
+ *  ======= Début des routes pour les métiers. =======
  * 
  */
 app.post('/api/metiers', sendImage.single('image'), async (request, response) => {
@@ -901,7 +901,7 @@ app.get('/api/metiers', async (request, response) => {
 
         return response.status(200).json({ message: "La récupération des métiers réussie", metier })
     } catch (error) {
-        return response.status(500).json({ message: "Erreur lors de la récuperation", error: error.message })
+        return response.status(500).json({ message: "Erreur lors de la récupération", error: error.message })
     }
 })
 app.get('/api/metiers/:id', async (request, response) => {
@@ -915,7 +915,7 @@ app.get('/api/metiers/:id', async (request, response) => {
 
         return response.status(200).json({ message: "La récupération des métiers réussie", metier })
     } catch (error) {
-        return response.status(500).json({ message: "Erreur lors de la récuperation", error: error.message })
+        return response.status(500).json({ message: "Erreur lors de la récupération", error: error.message })
     }
 })
 app.patch('/api/metiers/:id', sendImage.single('image'), async (request, response) => {
@@ -1034,7 +1034,7 @@ app.post('/api/devis', sendImage.single('image'), async (request, response) => {
             return response.status(404).json({ error: "La création de devis échouée" })
         }
 
-        return response.status(201).json({ message: "La création de devis reussie", devisCreated })
+        return response.status(201).json({ message: "La création du devis a réussi", devisCreated })
 
     } catch (error) {
         return response.status(500).json({ message: "Erreur lors de la création", error: error.message })
@@ -1045,12 +1045,12 @@ app.get('/api/devis', async (request, response) => {
         const devis = await getAllDevis()
 
         if (!devis) {
-            return response.status(404).json({ error: "La récuperation de devis échouée" })
+            return response.status(404).json({ error: "La récupération du devis a échoué" })
         }
 
-        return response.status(200).json({ message: "La récuperation de devis reussie ", devis })
+        return response.status(200).json({ message: "La récupération du devis a réussi", devis })
     } catch (error) {
-        return response.status(500).json({ message: "Erreur lors de la récuperation", error: error.message })
+        return response.status(500).json({ message: "Erreur lors de la récupération", error: error.message })
     }
 })
 app.get('/api/devis/:id', async (request, response) => {
@@ -1059,12 +1059,12 @@ app.get('/api/devis/:id', async (request, response) => {
         const devis = await getDevisById(id)
 
         if (!devis) {
-            return response.status(404).json({ error: "La récuperation de devis échouée" })
+            return response.status(404).json({ error: "La récupération du devis a échoué" })
         }
 
-        return response.status(200).json({ message: "La récuperation de devis reussie ", devis })
+        return response.status(200).json({ message: "La récupération du devis a réussi", devis })
     } catch (error) {
-        return response.status(500).json({ message: "Erreur lors de la récuperation", error: error.message })
+        return response.status(500).json({ message: "Erreur lors de la récupération", error: error.message })
     }
 })
 app.get('/api/devisLimit', async (request, response) => {
@@ -1072,12 +1072,12 @@ app.get('/api/devisLimit', async (request, response) => {
         const devis = await getDevisLimit()
 
         if (!devis) {
-            return response.status(404).json({ error: "La récuperation de devis échouée" })
+            return response.status(404).json({ error: "La récupération du devis a échoué" })
         }
 
-        return response.status(200).json({ message: "La récuperation de devis reussie ", devis })
+        return response.status(200).json({ message: "La récupération du devis a réussi", devis })
     } catch (error) {
-        return response.status(500).json({ message: "Erreur lors de la récuperation", error: error.message })
+        return response.status(500).json({ message: "Erreur lors de la récupération", error: error.message })
     }
 })
 app.patch('/api/devis/:id', sendImage.single('image'), async (request, response) => {
@@ -1100,7 +1100,7 @@ app.patch('/api/devis/:id', sendImage.single('image'), async (request, response)
 
 
 
-        return response.status(201).json({ message: "La mise à jour de devis reussie", devisUpdated })
+        return response.status(201).json({ message: "La mise à jour du devis a réussi", devisUpdated })
     } catch (error) {
         console.error(error);
         return response.status(500).json({ message: "Erreur lors de la mise à jour", error: error.message })
@@ -1116,7 +1116,7 @@ app.delete('/api/devis/:id', async (request, response) => {
             return response.status(404).json({ error: "Non trouvé" })
         }
 
-        return response.status(201).json({ message: "La suppression de devis reussie", devisDeleted })
+        return response.status(201).json({ message: "La suppression du devis a réussi", devisDeleted })
     } catch (error) {
         return response.status(500).json({ message: "Erreur lors de la suppression", error: error.message })
     }
@@ -1147,7 +1147,7 @@ app.post('/api/bannieres', sendImage.single('image'), async (request, response) 
             return response.status(404).json({ error: "La création de la bannière échouée" })
         }
 
-        return response.status(201).json({ message: "La création de la bannière reussie", banniereCreated })
+        return response.status(201).json({ message: "La création de la bannière a réussi", banniereCreated })
 
     } catch (error) {
         return response.status(500).json({ message: "Erreur lors de la création", error: error.message })
@@ -1158,12 +1158,12 @@ app.get('/api/bannieres', async (request, response) => {
         const bannieres = await getAllBanniere()
 
         if (!bannieres) {
-            return response.status(404).json({ error: "La récuperation de la bannière échouée" })
+            return response.status(404).json({ error: "La récupération de la bannière a échoué" })
         }
 
-        return response.status(200).json({ message: "La récuperation de la bannière reussie ", bannieres })
+        return response.status(200).json({ message: "La récupération de la bannière a réussi", bannieres })
     } catch (error) {
-        return response.status(500).json({ message: "Erreur lors de la récuperation", error: error.message })
+        return response.status(500).json({ message: "Erreur lors de la récupération", error: error.message })
     }
 })
 app.get('/api/bannieres/:id', async (request, response) => {
@@ -1172,12 +1172,12 @@ app.get('/api/bannieres/:id', async (request, response) => {
         const bannieres = await getBanniereById(id)
 
         if (!bannieres) {
-            return response.status(404).json({ error: "La récuperation de la bannière échouée" })
+            return response.status(404).json({ error: "La récupération de la bannière a échoué" })
         }
 
-        return response.status(200).json({ message: "La récuperation de la bannière reussie ", bannieres })
+        return response.status(200).json({ message: "La récupération de la bannière a réussi", bannieres })
     } catch (error) {
-        return response.status(500).json({ message: "Erreur lors de la récuperation", error: error.message })
+        return response.status(500).json({ message: "Erreur lors de la récupération", error: error.message })
     }
 })
 app.patch('/api/bannieres/:id', sendImage.single('image'), async (request, response) => {
@@ -1203,7 +1203,7 @@ app.patch('/api/bannieres/:id', sendImage.single('image'), async (request, respo
             return response.status(404).json({ error: "Non trouvé" })
         }
 
-        return response.status(201).json({ message: "La mise à jour de la bannière reussie", banniereUpdated })
+        return response.status(201).json({ message: "La mise à jour de la bannière a réussi", banniereUpdated })
     } catch (error) {
         return response.status(500).json({ message: "Erreur lors de la mise à jour", error: error.message })
     }
@@ -1218,7 +1218,7 @@ app.delete('/api/bannieres/:id', async (request, response) => {
             return response.status(404).json({ error: "Non trouvé" })
         }
 
-        return response.status(201).json({ message: "La suppression de la bannière reussie", banniereDeleted })
+        return response.status(201).json({ message: "La suppression de la bannière a réussi", banniereDeleted })
     } catch (error) {
         return response.status(500).json({ message: "Erreur lors de la suppression", error: error.message })
     }
@@ -1272,7 +1272,7 @@ app.post('/api/personnels', sendImage.single('image'), async (request, response)
         const personnel = await createPersonnel(dataPersonnel);
 
         if (!personnel) {
-            return response.status(400).json({ error: 'Creation du personnel échouée' });
+            return response.status(400).json({ error: 'La création du personnel a échoué' });
         }
 
         return response.status(201).json({ message: 'Personnel créé avec succès', personnel });
@@ -1423,7 +1423,7 @@ app.post('/api/actualites', sendImage.single('image'), async (request, response)
         const actualiteCreated = await createActualite(dataActualite)
 
         if (!actualiteCreated) {
-            return response.status(400).json({ error: 'Creation de l\'actualité échouée' });
+            return response.status(400).json({ error: 'La création de l\'actualité a échoué' });
         }
 
         const allUtilisateurs = await getAllUtilisateur()
@@ -1456,7 +1456,7 @@ app.get('/api/actualites', async (request, response) => {
 
 
 
-        return response.status(200).json({ message: "actualité trouvée", actualite })
+        return response.status(200).json({ message: "Actualité trouvée", actualite })
     } catch (error) {
         return response.status(500).json({ error: 'Erreur lors de la récupération des actualités', error: error.message });
     }
@@ -1470,7 +1470,7 @@ app.get('/api/actualites/:id', async (request, response) => {
             return response.status(404).json({ error: "Aucune actualité trouvée" })
         }
 
-        return response.status(200).json({ message: "actualité trouvée", actualite })
+        return response.status(200).json({ message: "Actualité trouvée", actualite })
     } catch (error) {
         return response.status(500).json({ error: 'Erreur lors de la récupération des actualités', error: error.message });
     }
@@ -1483,7 +1483,7 @@ app.get('/api/actualitesLimit', async (request, response) => {
             return response.status(404).json({ error: "Aucune actualité trouvée" })
         }
 
-        return response.status(200).json({ message: "actualité trouvée", actualites })
+        return response.status(200).json({ message: "Actualité trouvée", actualites })
     } catch (error) {
         return response.status(500).json({ error: 'Erreur lors de la récupération des actualités', error: error.message });
     }
@@ -1515,10 +1515,10 @@ app.patch('/api/actualites/:id', sendImage.single('image'), async (request, resp
             return response.status(404).json({ message: "Non trouvé" })
         }
 
-        return response.status(201).json({ message: "Modification a réussie.", actualiteUpdated })
+        return response.status(201).json({ message: "La modification a réussi.", actualiteUpdated })
 
     } catch (error) {
-        return response.status(500).json({ error: 'Erreur lors de la modification de l\'actualités', error: error.message });
+        return response.status(500).json({ error: 'Erreur lors de la modification de l\'actualité', error: error.message });
     }
 })
 app.delete('/api/actualites/:id', async (request, response) => {
@@ -1531,9 +1531,9 @@ app.delete('/api/actualites/:id', async (request, response) => {
             return response.status(400).json({ error: "Non trouvé" })
         }
 
-        return response.status(200).json({ message: "Suppression a réussie." })
+        return response.status(200).json({ message: "La suppression a réussi." })
     } catch (error) {
-        return response.status(500).json({ error: 'Erreur lors de la suppression de l\'actualités', error: error.message });
+        return response.status(500).json({ error: 'Erreur lors de la suppression de l\'actualité', error: error.message });
     }
 })
 /** 
@@ -1613,7 +1613,7 @@ app.get('/visiteurs/actualites/lectures', async (request, response) => {
     response.render('actualite-lectures',
         {
             layout: "main",
-            title: actualite.titre,
+            title: "L'ecture de l'article",
             description: actualite.contenu,
             image: image,
             url: `/visiteurs/actualites/lectures?id=${actualite.id}`,
@@ -1675,7 +1675,7 @@ app.get('/visiteurs/realisations/lectures', async (request, response) => {
     response.render('lecture-realisations',
         {
             layout: "main",
-            title: realisation.titre,
+            title: "Detail sur la realisation",
             description: realisation.description,
             image: image,
             url: `/visiteurs/realisations/lectures?id=${realisation.id}`,
@@ -1728,7 +1728,7 @@ app.get('/visiteurs/speciale/offres/mois', async (request, response) => {
     response.render('offres',
         {
             layout: "main",
-             title: offre.titre,
+             title: "L'offre du mois",
             description: offre.description,
             image: image,
             url: `/visiteurs/speciale/offres/mois`,

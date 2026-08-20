@@ -1,6 +1,6 @@
 import pool from "../db/config.js";
 
-/** Création du marches
+/** Création d'un prix du marché.
  * @param {object}
  *  @returns {object}
  */
@@ -23,7 +23,7 @@ export const createMarche = async (dataMarches) => {
 }
 
 /**
- * Récuperatin de tous les marches
+ * Récupération de tous les prix du marché.
  * @returns {Array}
  */
 export const getAllMarche = async () => {
@@ -38,7 +38,7 @@ export const getAllMarche = async () => {
 
 }
 /**
- * Récuperatin de tous les marches statut true
+ * Récupération de tous les prix du marché actifs.
  * @returns {Array}
  */
 export const getAllMarcheStatutTrue = async () => {
@@ -54,7 +54,7 @@ export const getAllMarcheStatutTrue = async () => {
 }
 
 /**
- * Récuperatin du marche limit 5
+ * Récupération des cinq prix du marché les plus récents.
  * @returns {Array}
  */
 export const getMarcheLimit = async () => {
@@ -70,7 +70,7 @@ export const getMarcheLimit = async () => {
 }
 
 /**
- * Récuperatin de marches par id
+ * Récupération d'un prix du marché par son identifiant.
  * @returns {Array}
  */
 export const getMarcheById = async (id) => {
