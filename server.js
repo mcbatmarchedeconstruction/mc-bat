@@ -1548,20 +1548,24 @@ app.delete('/api/actualites/:id', async (request, response) => {
  */
 // ========== home - visiteurs ==========
 app.get('/', async (request, response) => {
+    const image = "https://mc-bat.onrender.com/assets/mc-bat.png";
+
     response.render('home', {
         title: 'Accueil',
-        currentPage: '/'
+        currentPage: '/',
+        image: image
     });
 });
 // ========== actualités - visiteurs ==========
 app.get('/visiteurs/actualites/liste', async (request, response) => {
-
+const image =  "https://mc-bat.onrender.com/assets/mc-bat.png";
 
     response.render('actualites-liste',
         {
             layout: "main",
             title: "Liste des actualités",
             currentPage: "actualites-liste",
+            image: image,
             styles: ["actualites.css"],
             scripts: ["actualites.js"]
         }
@@ -1569,19 +1573,24 @@ app.get('/visiteurs/actualites/liste', async (request, response) => {
 })
 // ========== informations légales - visiteurs ==========
 app.get('/visiteurs/mentions-legales', (request, response) => {
+    const image = "https://mc-bat.onrender.com/assets/mc-bat.png";
     response.render('mentions-legales', {
         layout: 'main',
         title: 'Mentions légales',
         currentPage: 'mentions-legales',
+        image:image,
         styles: ['services.css']
     })
 })
 
 app.get('/visiteurs/confidentialite', (request, response) => {
+    const image = "https://mc-bat.onrender.com/assets/mc-bat.png";
+
     response.render('confidentialite', {
         layout: 'main',
         title: 'Politique de confidentialité',
         currentPage: 'confidentialite',
+        image:image,
         styles: ['services.css']
     })
 })
@@ -1597,12 +1606,16 @@ app.get('/visiteurs/actualites/lectures', async (request, response) => {
         date: actualites.created_at.toISOString().split('T')[0]
     }
 
+    const image = actualite.image
+    ? actualite.image
+    : "https://mc-bat.onrender.com/assets/mc-bat.png";
+
     response.render('actualite-lectures',
         {
             layout: "main",
             title: actualite.titre,
             description: actualite.contenu,
-            image: actualite.image,
+            image: image,
             url: `/visiteurs/actualites/lectures?id=${actualite.id}`,
 
             currentPage: "actualite-lectures",
@@ -1614,12 +1627,13 @@ app.get('/visiteurs/actualites/lectures', async (request, response) => {
 })
 // ========== devis - visiteurs ==========
 app.get('/visiteurs/devis/demandes', async (request, response) => {
-
+    const image =  "https://mc-bat.onrender.com/assets/mc-bat.png";
     response.render('devis-demande',
         {
             layout: "main",
             title: "Demande de devis",
             currentPage: "devis-demande",
+            image: image,
             styles: ["devis.css"],
             scripts: ["devis.js"]
         }
@@ -1627,12 +1641,13 @@ app.get('/visiteurs/devis/demandes', async (request, response) => {
 })
 // ========== Réalisations - visiteurs ==========
 app.get('/visiteurs/realisations/liste', async (request, response) => {
-
+const image =  "https://mc-bat.onrender.com/assets/mc-bat.png";
     response.render('realisations',
         {
             layout: "main",
             title: "Liste de nos réalisations",
             currentPage: "realisations",
+            image: image,
             styles: ["realisations.css"],
             scripts: ["realisations.js"]
         }
@@ -1654,12 +1669,15 @@ app.get('/visiteurs/realisations/lectures', async (request, response) => {
         return response.status(404).json({ error: "Aucune réalisation trouvée" })
     }
 
+    const image = realisation.image
+    ? realisation.image
+    : "https://mc-bat.onrender.com/assets/mc-bat.png";
     response.render('lecture-realisations',
         {
             layout: "main",
             title: realisation.titre,
             description: realisation.description,
-            image: realisation.image,
+            image: image,
             url: `/visiteurs/realisations/lectures?id=${realisation.id}`,
 
             currentPage: "lecture-realisations",
@@ -1671,12 +1689,13 @@ app.get('/visiteurs/realisations/lectures', async (request, response) => {
 })
 // ========== services - visiteurs ==========
 app.get('/visiteurs/services/lectures', async (request, response) => {
-
+const image =  "https://mc-bat.onrender.com/assets/mc-bat.png";
     response.render('services',
         {
             layout: "main",
             title: "Nos services",
             currentPage: "services",
+            image: image,
             styles: ["services.css"],
             scripts: ["services.js"]
         }
@@ -1684,12 +1703,14 @@ app.get('/visiteurs/services/lectures', async (request, response) => {
 })
 // ========== prix du marché - visiteurs ==========
 app.get('/visiteurs/meilleurs/marches/prix', async (request, response) => {
-
+const image =  "https://mc-bat.onrender.com/assets/mc-bat.png";
     response.render('marches-prix',
         {
             layout: "main",
             title: "Meilleurs prix du marché",
             currentPage: "marches-prix",
+            description: "Liste complète de nos matériaux",
+            image: image,
             styles: ["marches.css"],
             scripts: ["marches.js"]
         }
@@ -1700,14 +1721,16 @@ app.get('/visiteurs/speciale/offres/mois', async (request, response) => {
 
     const offre = await getOffreMois()
 
-    
+    const image = offre.image
+    ? offre.image
+    : "https://mc-bat.onrender.com/assets/mc-bat.png";
 
     response.render('offres',
         {
             layout: "main",
              title: offre.titre,
             description: offre.description,
-            image: offre.image,
+            image: image,
             url: `/visiteurs/speciale/offres/mois`,
             currentPage: "offres",
             styles: ["offres.css"],
