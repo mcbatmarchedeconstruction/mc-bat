@@ -1721,6 +1721,21 @@ app.get('/visiteurs/speciale/offres/mois', async (request, response) => {
 
     const offre = await getOffreMois()
 
+    // Aucune offre disponible
+        if (!offre) {
+            return response.render('offres', {
+                layout: "main",
+                title: "L'offre du mois",
+                description: "Aucune offre du mois disponible.",
+                image: "https://mc-bat.onrender.com/assets/mc-bat.png",
+                url: `/visiteurs/speciale/offres/mois`,
+                currentPage: "offres",
+                styles: ["offres.css"],
+                scripts: ["offres.js"],
+                offre: null
+            })
+        }
+
     const image = offre.image
     ? offre.image
     : "https://mc-bat.onrender.com/assets/mc-bat.png";

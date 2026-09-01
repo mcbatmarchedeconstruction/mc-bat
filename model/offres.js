@@ -75,6 +75,7 @@ export const getOffreMois = async () => {
             ORDER BY created_at DESC LIMIT 1
         `
     )
+    
 
     return result.rows[0];
 }
